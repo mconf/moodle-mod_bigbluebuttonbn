@@ -73,7 +73,7 @@ $string['modulename'] = 'Webconferência Mconf';
 $string['modulenameplural'] = 'Webconferência Mconf';
 $string['modulename_help'] = 'Webconferência Mconf permite que você crie a partir do Moodle salas de webconferência e especifique título, descrição, período de utilização, grupos e detalhes sobre a gravação da sessão.
 
-IMPORTANTE: Para visualizar as gravações posteriormente adicione o recurso "Gravações de webconferências Mconf" neste curso.';
+IMPORTANTE: Para visualizar as gravações posteriormente adicione o recurso "Gravações Mconf" neste curso.';
 $string['modulename_link'] = 'BigBlueButtonBN/view';
 $string['pluginadministration'] = 'Administração do Mconf';
 $string['pluginname'] = 'Webconferência Mconf';

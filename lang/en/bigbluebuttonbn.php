@@ -74,7 +74,7 @@ $string['modulename_help'] = 'Mconf Webconference lets you create from within Mo
 
 Using Mconf Webconference you can specify for the title, description, calendar entry (which gives a date range for joining the session), groups, and details about the recording of the on-line session.
 
-To view later recordings, add a RecordingsBN resource to this course.';
+To view later recordings, add a Mconf Recordings resource to this course.';
 $string['modulename_link'] = 'BigBlueButtonBN/view';
 $string['pluginadministration'] = 'Mconf administration';
 $string['pluginname'] = 'Mconf Webconference';
