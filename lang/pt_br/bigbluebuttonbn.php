@@ -5,12 +5,13 @@
  * Authors:
  *    Fred Dixon  (ffdixon [at] blindsidenetworks [dt] com)
  *    Jesus Federico  (jesus [at] blindsidenetworks [dt] com)
+ *    Luciano Silva  (lucianoes [at] ufrgs [dt] br)
+ *    Felipe Cecagno  (felipe [at] mconf [dt] org)
  *    
  *
  * @package   mod_bigbluebuttonbn
  * @copyright 2010-2012 Blindside Networks
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v2 or later
- * Traduzido para o português por Luciano Silva lucianoes@ufrgs.br para uso com o Mconf
  */
 defined('MOODLE_INTERNAL') || die();
 
