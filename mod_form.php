@@ -198,9 +198,6 @@ class mod_bigbluebuttonbn_mod_form extends moodleform_mod {
         if ( floatval($serverVersion) >= 0.8 ) {
             $mform->addElement('header', 'general', get_string('mod_form_block_record', 'bigbluebuttonbn'));
 
-            $mform->addElement( 'checkbox', 'record', get_string('mod_form_field_record', 'bigbluebuttonbn') );
-            $mform->setDefault( 'record', 0 );
-	
             $mform->addElement('text', 'description', get_string('mod_form_field_description','bigbluebuttonbn'), 'maxlength="100" size="32"' );
             $mform->addHelpButton('description', 'mod_form_field_description', 'bigbluebuttonbn');
             $mform->setType('description', PARAM_TEXT);

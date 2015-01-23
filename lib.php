@@ -50,7 +50,7 @@ function bigbluebuttonbn_add_instance($bigbluebuttonbn) {
 
     if (! isset($bigbluebuttonbn->newwindow))     $bigbluebuttonbn->newwindow = 0;
     if (! isset($bigbluebuttonbn->wait))          $bigbluebuttonbn->wait = 0;
-    if (! isset($bigbluebuttonbn->record))        $bigbluebuttonbn->record = 0;
+    if (! isset($bigbluebuttonbn->record))        $bigbluebuttonbn->record = true;
     if (! isset($bigbluebuttonbn->allmoderators)) $bigbluebuttonbn->allmoderators = 0;
 
     $returnid = $DB->insert_record('bigbluebuttonbn', $bigbluebuttonbn);
@@ -94,7 +94,7 @@ function bigbluebuttonbn_update_instance($bigbluebuttonbn) {
 
     if (! isset($bigbluebuttonbn->newwindow))     $bigbluebuttonbn->newwindow = 0;
     if (! isset($bigbluebuttonbn->wait))          $bigbluebuttonbn->wait = 0;
-    if (! isset($bigbluebuttonbn->record))        $bigbluebuttonbn->record = 0;
+    if (! isset($bigbluebuttonbn->record))        $bigbluebuttonbn->record = true;
     if (! isset($bigbluebuttonbn->allmoderators)) $bigbluebuttonbn->allmoderators = 0;
 
     $returnid = $DB->update_record('bigbluebuttonbn', $bigbluebuttonbn);
