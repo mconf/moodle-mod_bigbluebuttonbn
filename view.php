@@ -13,6 +13,8 @@ require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/locallib.php');
 require_once($CFG->libdir . '/completionlib.php');
 
+require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Mobile_Detect.php';
+
 $id = optional_param('id', 0, PARAM_INT); // course_module ID, or
 $b  = optional_param('n', 0, PARAM_INT);  // bigbluebuttonbn instance ID
 $group  = optional_param('group', 0, PARAM_INT);  // bigbluebuttonbn group ID
@@ -73,6 +75,7 @@ $administrator = has_capability('moodle/category:manage', $context);
 //BigBlueButton server data
 $bbbsession['salt'] = trim($CFG->BigBlueButtonBNSecuritySalt);
 $bbbsession['url'] = trim(trim($CFG->BigBlueButtonBNServerURL),'/').'/';
+$bbbsession['detectmobile'] = $CFG->BigBlueButtonBNDetectMobile;
 
 $serverVersion = bigbluebuttonbn_getServerVersion($bbbsession['url']); 
 if ( !isset($serverVersion) ) { //Server is not working
@@ -205,6 +208,12 @@ if( $bbbsession['flag']['administrator'] || $bbbsession['flag']['moderator'] || 
 else
     $bbbsession['joinURL'] = bigbluebuttonbn_getJoinURL($bbbsession['meetingid'], $bbbsession['username'], $bbbsession['viewerPW'], $bbbsession['salt'], $bbbsession['url'], $bbbsession['userID']);
 
+// Mobile detection
+if ($bbbsession['detectmobile']) {
+    if (bigbluebutton_is_device_for_mobile_client()) {
+      $bbbsession['joinURL'] = preg_replace('/http[s]?:\/\//i', 'bigbluebutton://', $bbbsession['joinURL']);
+    }
+}
 
 $joining = false;
 $bigbluebuttonbn_view = '';
@@ -439,5 +448,9 @@ function bigbluebuttonbn_view_after( $bbbsession ){
     }
 }
 
+function bigbluebutton_is_device_for_mobile_client(){
+  $detect = new Mobile_Detect;
+  return $detect->isAndroidOS() || $detect->isiOS();
+}
 
 ?>
