@@ -76,7 +76,6 @@ $administrator = has_capability('moodle/category:manage', $context);
 $bbbsession['salt'] = trim($CFG->BigBlueButtonBNSecuritySalt);
 $bbbsession['url'] = trim(trim($CFG->BigBlueButtonBNServerURL),'/').'/';
 $bbbsession['detectmobile'] = $CFG->BigBlueButtonBNDetectMobile;
-$bbbsession['forcemobile'] = $CFG->BigBlueButtonBNForceMobile;
 
 $serverVersion = bigbluebuttonbn_getServerVersion($bbbsession['url']); 
 if ( !isset($serverVersion) ) { //Server is not working
@@ -210,8 +209,8 @@ else
     $bbbsession['joinURL'] = bigbluebuttonbn_getJoinURL($bbbsession['meetingid'], $bbbsession['username'], $bbbsession['viewerPW'], $bbbsession['salt'], $bbbsession['url'], $bbbsession['userID']);
 
 // Mobile detection
-if ($bbbsession['forcemobile'] || $bbbsession['detectmobile']) {
-    if ( $bbbsession['forcemobile'] || (bigbluebutton_is_device_for_mobile_client()) ) {
+if ($bbbsession['detectmobile']) {
+    if (bigbluebutton_is_device_for_mobile_client()) {
       $bbbsession['joinURL'] = preg_replace('/http[s]?:\/\//i', 'bigbluebutton://', $bbbsession['joinURL']);
     }
 }
