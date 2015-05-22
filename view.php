@@ -306,7 +306,8 @@ function bigbluebuttonbn_view_joining( $bbbsession, $context, $bigbluebuttonbn )
                 "meta_context" => $bbbsession['context'],
                 "meta_contextActivity" => $bbbsession['contextActivity'],
                 "meta_contextActivityDescription" => $bbbsession['contextActivityDescription'],
-                "meta_recording" => $bbbsession['textflag']['record']);
+                "meta_recording" => $bbbsession['textflag']['record'],
+                "meta_invitation-url" => $bbbsession['courseURL']);
         $response = bigbluebuttonbn_getCreateMeetingArray( $bbbsession['meetingname'], $bbbsession['meetingid'], $bbbsession['welcome'], $bbbsession['modPW'], $bbbsession['viewerPW'], $bbbsession['salt'], $bbbsession['url'], $bbbsession['logoutURL'], $bbbsession['textflag']['record'], $bbbsession['timeduration'], $bbbsession['voicebridge'], $metadata );
 
         if (!$response) {
