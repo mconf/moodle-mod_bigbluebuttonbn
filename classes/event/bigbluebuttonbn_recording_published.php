@@ -4,14 +4,14 @@
  *
  * @package   mod_bigbluebuttonbn
  * @author    Jesus Federico  (jesus [at] blindsidenetworks [dt] com)
- * @copyright 2014 Blindside Networks Inc.
+ * @copyright 2014-2015 Blindside Networks Inc.
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v2 or later
  */
 
 namespace mod_bigbluebuttonbn\event;
 defined('MOODLE_INTERNAL') || die();
 
-class bigbluebuttonbn_meeting_joined extends \core\event\base {
+class bigbluebuttonbn_recording_published extends \core\event\base {
     /**
      * Init method.
      *
@@ -29,7 +29,7 @@ class bigbluebuttonbn_meeting_joined extends \core\event\base {
      * @return string
      */
     public static function get_name() {
-        return get_string('event_meeting_joined', 'mod_bigbluebuttonbn');
+        return get_string('event_recording_published', 'mod_bigbluebuttonbn');
     }
 
     /**
@@ -38,8 +38,9 @@ class bigbluebuttonbn_meeting_joined extends \core\event\base {
      * @return string
      */
     public function get_description() {
-        return "The user with id '$this->userid' has joined a bigbluebutton meeting for the bigbluebuttonbn activity with id '$this->contextinstanceid' for " .
-        "the course id '$this->objectid'.";
+        $rid = isset($this->other['rid'])? $this->other['rid']: '';
+        return "The user with id '$this->userid' has published a recording with id '$rid' for " .
+        "the course id '$this->contextinstanceid'.";
     }
 
     /**
@@ -48,8 +49,8 @@ class bigbluebuttonbn_meeting_joined extends \core\event\base {
      * @return array
      */
     protected function get_legacy_logdata() {
-        return(array($this->courseid, 'bigbluebuttonbn', 'meeting joined',
-                'view.php?pageid=' . $this->objectid, get_string('event_meeting_joined', 'bigbluebuttonbn'), $this->contextinstanceid));
+        return(array($this->courseid, 'bigbluebuttonbn', 'recording published',
+                'view.php?pageid=' . $this->objectid, get_string('event_recording_published', 'bigbluebuttonbn'), $this->contextinstanceid));
     }
 
     /**
