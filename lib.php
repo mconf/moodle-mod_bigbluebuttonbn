@@ -220,7 +220,6 @@ function bigbluebuttonbn_get_recent_mod_activity(&$activities, &$index, $timesta
 
 /**
  * Prints single activity item prepared by {@see recordingsbn_get_recent_mod_activity()}
-
  * @return void
  */
 function bigbluebuttonbn_print_recent_mod_activity($activity, $courseid, $detail, $modnames, $viewfullnames) {
