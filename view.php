@@ -71,7 +71,7 @@ $administrator = has_capability('moodle/category:manage', $context);
 //BigBlueButton server data
 $bbbsession['salt'] = trim($CFG->BigBlueButtonBNSecuritySalt);
 $bbbsession['url'] = trim(trim($CFG->BigBlueButtonBNServerURL),'/').'/';
-$bbbsession['detectmobile'] = $CFG->BigBlueButtonBNDetectMobile;
+$bbbsession['detectmobile'] = $CFG->bigbluebuttonbn_detect_mobile;
 
 $serverVersion = bigbluebuttonbn_getServerVersion($bbbsession['url']); 
 if ( !isset($serverVersion) ) { //Server is not working
@@ -389,6 +389,19 @@ function bigbluebuttonbn_view_joining($bbbsession){
             }
         }
     }
+
+    if( $bbbsession['bigbluebuttonbntype'] == 0 ) {
+        // View for the bigbluebuttonbn "Classroom" type
+    }
+
+    // Show mobile client options if mobile is detected
+    if (bigbluebutton_is_device_for_mobile_client())
+    {
+        echo $OUTPUT->box_start('generalbox boxaligncenter', 'bigbluebuttonbn_view_action_button_box');
+        include 'mobile_apps.php';
+        echo $OUTPUT->box_end();
+    }
+
 }
 
 
