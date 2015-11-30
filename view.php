@@ -72,6 +72,7 @@ $administrator = has_capability('moodle/category:manage', $context);
 $bbbsession['salt'] = trim($CFG->BigBlueButtonBNSecuritySalt);
 $bbbsession['url'] = trim(trim($CFG->BigBlueButtonBNServerURL),'/').'/';
 $bbbsession['detectmobile'] = $CFG->bigbluebuttonbn_detect_mobile;
+$bbbsession['ismobilesession'] = bigbluebutton_is_device_for_mobile_client();
 
 $serverVersion = bigbluebuttonbn_getServerVersion($bbbsession['url']); 
 if ( !isset($serverVersion) ) { //Server is not working
@@ -225,13 +226,6 @@ if (!$bigbluebuttonbn->openingtime ) {
         $bbbsession['contextActivityName'] = $bbbsession['meetingname'];
         $bbbsession['contextActivityDescription'] = "";
         $bbbsession['contextActivityTags'] = "";
-
-        // Mobile detection
-        if ($bbbsession['detectmobile']) {
-            if (bigbluebutton_is_device_for_mobile_client()) {
-              $bbbsession['joinURL'] = preg_replace('/http[s]?:\/\//i', 'bigbluebutton://', $bbbsession['joinURL']);
-            }
-        }
 
         $jwt_token = new stdClass();
         $jwt_token->meeting_id = $bbbsession['meetingid'];
@@ -395,7 +389,7 @@ function bigbluebuttonbn_view_joining($bbbsession){
     }
 
     // Show mobile client options if mobile is detected
-    if (bigbluebutton_is_device_for_mobile_client())
+    if ($bbbsession['ismobilesession'])
     {
         echo $OUTPUT->box_start('generalbox boxaligncenter', 'bigbluebuttonbn_view_action_button_box');
         include 'mobile_apps.php';
