@@ -34,7 +34,7 @@ if( file_exists(dirname(__FILE__).'/config.php') ) {
 }
 
 /*
- * DURATIIONCOMPENSATION: Feature removed by configuration
+ * DURATIONCOMPENSATION: Feature removed by configuration
  */
 $BIGBLUEBUTTONBN_CFG->bigbluebuttonbn_scheduled_duration_enabled = 0;
 /*
@@ -85,16 +85,14 @@ function bigbluebuttonbn_add_instance($data, $mform) {
     $bigbluebuttonbn_id = $DB->insert_record('bigbluebuttonbn', $data);
     $data->id = $bigbluebuttonbn_id;
 
-    $bigbluebuttonbn = $DB->get_record('bigbluebuttonbn', array('id'=>$bigbluebuttonbn_id), '*', MUST_EXIST);
-
     if( isset($data->presentation) ) {
-         $draftitemid = $data->presentation;
+        $draftitemid = $data->presentation;
         bigbluebuttonbn_update_media_file($bigbluebuttonbn_id, $context, $draftitemid);
     }
 
     bigbluebuttonbn_process_post_save($data);
 
-    return $bigbluebuttonbn->id;
+    return $bigbluebuttonbn_id;
 }
 
 /**
@@ -220,7 +218,6 @@ function bigbluebuttonbn_get_recent_mod_activity(&$activities, &$index, $timesta
 
 /**
  * Prints single activity item prepared by {@see recordingsbn_get_recent_mod_activity()}
-
  * @return void
  */
 function bigbluebuttonbn_print_recent_mod_activity($activity, $courseid, $detail, $modnames, $viewfullnames) {
@@ -399,6 +396,7 @@ function bigbluebuttonbn_process_post_save(&$bigbluebuttonbn) {
     } else {
         $action = get_string('mod_form_field_notification_msg_modified', 'bigbluebuttonbn');
     }
+    $at = get_string('mod_form_field_notification_msg_at', 'bigbluebuttonbn');
 
     // Add evento to the calendar when if openingtime is set
     if ( isset($bigbluebuttonbn->openingtime) && $bigbluebuttonbn->openingtime ){
@@ -447,11 +445,11 @@ function bigbluebuttonbn_process_post_save(&$bigbluebuttonbn) {
             $msg->activity_description = trim($bigbluebuttonbn->intro);
         $msg->activity_openingtime = "";
         if ($bigbluebuttonbn->openingtime) {
-            $msg->activity_openingtime = calendar_day_representation($bigbluebuttonbn->openingtime).' at '.calendar_time_representation($bigbluebuttonbn->openingtime);
+            $msg->activity_openingtime = calendar_day_representation($bigbluebuttonbn->openingtime).' '.$at.' '.calendar_time_representation($bigbluebuttonbn->openingtime);
         }
         $msg->activity_closingtime = "";
         if ($bigbluebuttonbn->closingtime ) {
-            $msg->activity_closingtime = calendar_day_representation($bigbluebuttonbn->closingtime).' at '.calendar_time_representation($bigbluebuttonbn->closingtime);
+            $msg->activity_closingtime = calendar_day_representation($bigbluebuttonbn->closingtime).' '.$at.' '.calendar_time_representation($bigbluebuttonbn->closingtime);
         }
         $msg->activity_owner = $USER->firstname.' '.$USER->lastname;
 
@@ -535,11 +533,11 @@ function bigbluebuttonbn_pluginfile($course, $cm, $context, $filearea, $args, $f
 
     if( sizeof($args) > 1 ) {
         $cache = cache::make_from_params(cache_store::MODE_APPLICATION, 'mod_bigbluebuttonbn', 'presentation_cache');
-        $presentation_nonce_key = sha1($bigbluebuttonbn->meetingid);
+        $presentation_nonce_key = sha1($bigbluebuttonbn->id);
         $presentation_nonce = $cache->get($presentation_nonce_key);
         $presentation_nonce_value = $presentation_nonce['value'];
         $presentation_nonce_counter = $presentation_nonce['counter'];
-        
+
         if( $args["0"] != $presentation_nonce_value ) {
             return false;
         }
