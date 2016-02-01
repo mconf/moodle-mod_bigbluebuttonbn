@@ -37,10 +37,9 @@ if ($ADMIN->fulltree) {
     }
 
     if( !isset($BIGBLUEBUTTONBN_CFG->bigbluebuttonbn_detect_mobile) ) {
-      $settings->add( new admin_setting_configcheckbox( 'big_blue_buttonbn_detect_mobile',
-                get_string( 'bigbluebuttonbn_detect_mobile', 'bigbluebuttonbn' ),
-                get_string( 'bigbluebuttonbn_detect_mobile_description', 'bigbluebuttonbn' )
-                get_string( 'detectmobile', 'bigbluebuttonbn' ), 1));
+      $settings->add( new admin_setting_configcheckbox( 'bigbluebuttonbn_detect_mobile',
+                get_string( 'config_detect_mobile', 'bigbluebuttonbn' ),
+                get_string( 'config_detect_mobile_description', 'bigbluebuttonbn' ), 1));
     }
 
     //// Configuration for recording feature

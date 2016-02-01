@@ -140,6 +140,7 @@ $string['mod_form_field_openingtime'] = 'Join open';
 $string['mod_form_field_closingtime'] = 'Join closed';
 $string['mod_form_field_intro'] = 'Description';
 $string['mod_form_field_intro_help'] = 'A short description for the room or conference.';
+$string['mod_form_field_description'] = 'Description';
 $string['mod_form_field_duration_help'] = 'Setting the duration for a meeting will establish the maximum time for a meeting to keep alive before the recording finish';
 $string['mod_form_field_duration'] = 'Duration';
 $string['mod_form_field_userlimit'] = 'User limit';
