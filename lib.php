@@ -76,11 +76,6 @@ function bigbluebuttonbn_add_instance($data, $mform) {
 
     bigbluebuttonbn_process_pre_save($data);
 
-    if (! isset($bigbluebuttonbn->newwindow))     $bigbluebuttonbn->newwindow = 0;
-    if (! isset($bigbluebuttonbn->wait))          $bigbluebuttonbn->wait = 0;
-    if (! isset($bigbluebuttonbn->record))        $bigbluebuttonbn->record = true;
-    if (! isset($bigbluebuttonbn->allmoderators)) $bigbluebuttonbn->allmoderators = 0;
-
     unset($data->presentation);
     $bigbluebuttonbn_id = $DB->insert_record('bigbluebuttonbn', $data);
     $data->id = $bigbluebuttonbn_id;
@@ -109,11 +104,6 @@ function bigbluebuttonbn_update_instance($data, $mform) {
     $data->id = $data->instance;
     $draftitemid = isset($data->presentation)? $data->presentation: null;
     $context = bigbluebuttonbn_get_context_module($data->coursemodule);
-
-    if (! isset($bigbluebuttonbn->newwindow))     $bigbluebuttonbn->newwindow = 0;
-    if (! isset($bigbluebuttonbn->wait))          $bigbluebuttonbn->wait = 0;
-    if (! isset($bigbluebuttonbn->record))        $bigbluebuttonbn->record = true;
-    if (! isset($bigbluebuttonbn->allmoderators)) $bigbluebuttonbn->allmoderators = 0;
 
     bigbluebuttonbn_process_pre_save($data);
 
