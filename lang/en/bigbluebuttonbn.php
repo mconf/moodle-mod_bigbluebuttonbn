@@ -292,6 +292,7 @@ $string['view_recording_recording'] = 'Recording';
 $string['view_recording_duration_min'] = 'min';
 $string['view_recording_name'] = 'Name';
 $string['view_recording_tags'] = 'Tags';
+$string['view_recording_litigation'] = 'Litigation';
 $string['view_recording_modal_button'] = 'Apply';
 $string['view_recording_modal_title'] = 'Set values for recording';
 

@@ -208,6 +208,7 @@ if ($groupmode == NOGROUPS) {  //No groups mode
 $bbbsession['contextActivityName'] = $bbbsession['meetingname'];
 $bbbsession['contextActivityDescription'] = bigbluebuttonbn_html2text($bbbsession['meetingdescription'], 64);
 $bbbsession['contextActivityTags'] = "";
+$bbbsession['contextActivityLitigation'] = "";
 
 $bigbluebuttonbn_activity = 'open';
 $now = time();
@@ -303,6 +304,10 @@ function bigbluebuttonbn_view_joining($bbbsession) {
             '        <div>' . "\n" .
             '          <label for="tags">' . get_string('view_recording_tags', 'bigbluebuttonbn') . '</label><br/>' . "\n" .
             '          <input type="text" name="tags" id="recording_tags" value="" placeholder="">' . "\n" .
+            '        </div><br>' . "\n" .
+            '        <div>' . "\n" .
+            '          <label for="litigation">' . get_string('view_recording_litigation', 'bigbluebuttonbn') . '</label><br/>' . "\n" .
+            '          <input type="text" name="litigation" id="recording_litigation" value="" placeholder="">' . "\n" .
             '        </div>' . "\n" .
             '      </fieldset>' . "\n" .
             '    </form>' . "\n" .

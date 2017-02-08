@@ -54,14 +54,16 @@ M.mod_bigbluebuttonbn.view_init = function(Y) {
                 var nameField = Y.one('#recording_name');
                 var descriptionField  = Y.one('#recording_description');
                 var tagsField = Y.one('#recording_tags');
+                var litigationField = Y.one('#recording_litigation');
 
                 //Gatter the fields thay will be passed as metaparameters to the bbb server
                 var name = nameField.get('value').replace(/</g, "&lt;").replace(/>/g, "&gt;");
                 var description = descriptionField.get('value').replace(/</g, "&lt;").replace(/>/g, "&gt;");
                 var tags = tagsField.get('value').replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                var litigation = litigationField.get('value').replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
                 // Prepare the new join_url
-                var join_url = joinField.get('value') + '&name=' + name + '&description=' + description + '&tags=' + tags;
+                var join_url = joinField.get('value') + '&name=' + name + '&description=' + description + '&tags=' + tags + '&litigation=' + litigation;
 
                 // Executes the join
                 M.mod_bigbluebuttonbn.broker_executeJoin(join_url, messageField.get('value'));
@@ -70,6 +72,7 @@ M.mod_bigbluebuttonbn.view_init = function(Y) {
                 nameField.set('value', '');
                 descriptionField.set('value', '');
                 tagsField.set('value', '');
+                litigationField.set('value', '');
                 joinField.set('value', '');
                 messageField.set('value', '');
             }
