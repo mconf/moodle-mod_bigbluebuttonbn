@@ -991,7 +991,7 @@ function bigbluebuttonbn_get_recording_data_row($bbbsession, $recording, $tools=
         foreach ( $recording['playbacks'] as $playback ) {
             // link name is the litigation field if set, otherwise it will be the format type
             $link_string = '';
-            if ( isset($recording['meta_bbb-recording-litigation']) ) {
+            if ( isset($recording['meta_bbb-recording-litigation']) && !empty($recording['meta_bbb-recording-litigation']) ) {
                 $link_string = str_replace('"', '\"', $recording['meta_bbb-recording-litigation']);
             } else {
                 $link_string = get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn');

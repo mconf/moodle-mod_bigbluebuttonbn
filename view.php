@@ -307,7 +307,7 @@ function bigbluebuttonbn_view_joining($bbbsession) {
             '        </div><br>' . "\n" .
             '        <div>' . "\n" .
             '          <label for="litigation">' . get_string('view_recording_litigation', 'bigbluebuttonbn') . '</label><br/>' . "\n" .
-            '          <input type="text" name="litigation" id="recording_litigation" value="" placeholder="">' . "\n" .
+            '          <input type="text" name="litigation" id="recording_litigation" value="" placeholder="" required>' . "\n" .
             '        </div>' . "\n" .
             '      </fieldset>' . "\n" .
             '    </form>' . "\n" .
