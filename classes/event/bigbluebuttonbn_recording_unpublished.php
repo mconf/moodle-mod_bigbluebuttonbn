@@ -1,6 +1,6 @@
 <?php
 /**
- * The mod_bigbluebuttonbn viewed event.
+ * The mod_bigbluebuttonbn recording unpublished event.
  *
  * @package   mod_bigbluebuttonbn
  * @author    Jesus Federico  (jesus [at] blindsidenetworks [dt] com)
@@ -11,7 +11,7 @@
 namespace mod_bigbluebuttonbn\event;
 defined('MOODLE_INTERNAL') || die();
 
-class bigbluebuttonbn_activity_viewed extends \core\event\base {
+class bigbluebuttonbn_recording_unpublished extends \core\event\base {
     /**
      * Init method.
      *
@@ -29,7 +29,7 @@ class bigbluebuttonbn_activity_viewed extends \core\event\base {
      * @return string
      */
     public static function get_name() {
-        return get_string('event_activity_viewed', 'mod_bigbluebuttonbn');
+        return get_string('event_recording_unpublished', 'mod_bigbluebuttonbn');
     }
 
     /**
@@ -38,9 +38,9 @@ class bigbluebuttonbn_activity_viewed extends \core\event\base {
      * @return string
      */
     public function get_description() {
-        $a = (object) array('userid' => $this->userid, 'bigbluebuttonbnid' => $this->objectid, 'courseid' => $this->contextinstanceid);
-        return "The user with id '$a->userid' viewed the bigbluebuttonbn activity with id '$a->bigbluebuttonbnid' for " .
-        "the course id '$a->courseid'.";
+        $rid = isset($this->other['rid'])? $this->other['rid']: '';
+        $a = (object) array('userid' => $this->userid, 'recordingid' => $rid, 'courseid' => $this->contextinstanceid);
+        return "The user with id '$a->userid' has unpublished a recording with id '$a->recordingid' in the course id '$a->courseid'.";
     }
 
     /**
@@ -49,8 +49,8 @@ class bigbluebuttonbn_activity_viewed extends \core\event\base {
      * @return array
      */
     protected function get_legacy_logdata() {
-        return(array($this->courseid, 'bigbluebuttonbn', 'activity viewed',
-                'view.php?pageid=' . $this->objectid, get_string('event_activity_viewed', 'bigbluebuttonbn'), $this->contextinstanceid));
+        return(array($this->courseid, 'bigbluebuttonbn', 'recording unpublished',
+                'view.php?pageid=' . $this->objectid, get_string('event_recording_unpublished', 'bigbluebuttonbn'), $this->contextinstanceid));
     }
 
     /**
