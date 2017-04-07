@@ -51,7 +51,17 @@ $meetingUrl = $address.$version.$playback."?meetingId".$meetingId;
 
 	// $proxyAddress = "/proxy".$version;
 $proxyAddress = $version;
-$page = file_get_contents($meetingUrl);
+
+// create a new cURL resource
+$ch = curl_init();
+
+// set URL and other appropriate options
+curl_setopt($ch, CURLOPT_URL, $meetingUrl);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+$page = $urlContent = curl_exec($ch);
+// $page = file_get_contents($meetingUrl);
 
 $page = str_replace("href=\"", "href=\"".'https://vc.tjrr.jus.br/playback/presentation/0.9.0/', $page);
 $page = str_replace("src=\"", "src=\"".'https://vc.tjrr.jus.br/playback/presentation/0.9.0/', $page);
@@ -59,5 +69,10 @@ $page = str_replace("src=\"", "src=\"".'https://vc.tjrr.jus.br/playback/presenta
 echo $page;
 
 echo $OUTPUT->footer();
+
+
+
+
+
 
 ?>
