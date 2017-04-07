@@ -21,49 +21,30 @@ if (isloggedin()){
 		}
 	}
 
-	$headers = get_headers($requestAddress);
+	$ch = curl_init();
 
-	foreach ($headers as $hdr) {
+// set URL and other appropriate options
+	curl_setopt($ch, CURLOPT_URL, $requestAddress);
+	curl_setopt($ch, CURLOPT_HEADER, 1);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+	$urlContent = curl_exec($ch);
+
+	$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+	$header = substr($urlContent, 0, $header_size);
+	$body = substr($urlContent, $header_size);
+
+
+// close cURL resource, and free up system resources
+	curl_close($ch);
+
+	$newheaders = explode("\n", $header);
+	foreach ($newheaders as $hdr) {
 		header($hdr);
 	}
 
-	readfile($requestAddress);
+	echo $body;
 
-
-
-// 	$requestAddress = 'http://127.0.0.1/proxy'.$_REQUEST['file'];
-// // create a new cURL resource
-// 	$ch = curl_init();
-
-// // set URL and other appropriate options
-// 	curl_setopt($ch, CURLOPT_URL, $requestAddress);
-// 	curl_setopt($ch, CURLOPT_HEADER, 0);
-// 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-// // grab URL and pass it to the browser
-// 	$urlContent = curl_exec($ch);
-
-// // Check if any error occured
-// 	if(!curl_errno($ch))
-// 	{
-// 		$info = curl_getinfo($ch);
-
-
-// 		foreach ($info as $key => $hdr) {
-// 		  	// header($hdr);
-// 			if(!is_array($hdr)){
-// 				$newHeader = $key.": ".$hdr;
-// 				error_log($newHeader,0);
-// 				header($newHeader);
-// 			}
-
-// 		}
-
-// 		echo $urlContent;
-// 	}
-
-// // close cURL resource, and free up system resources
-// 	curl_close($ch);
 }
 else {
 	error_log(print_r("else",true));
