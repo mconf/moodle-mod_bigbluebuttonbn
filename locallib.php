@@ -222,11 +222,25 @@ function bigbluebuttonbn_getRecordingsArray( $meetingIDs, $URL, $SALT ) {
         $xml = bigbluebuttonbn_wrap_xml_load_file( bigbluebuttonbn_getRecordingsURL( $URL, $SALT, $meetingIDs ) );
     }
 
+    
+
     if ( $xml && $xml->returncode == 'SUCCESS' && isset($xml->recordings) ) { //If there were meetings already created
+
+        $MAP_MEETING_RECORD = array();
         foreach ( $xml->recordings->recording as $recording ) {
+
+            $recordId = (string)$recording->recordID;
+
+            $recordId = str_replace('-', '', $recordId);
+        
+            $MAP_MEETING_RECORD[$recordId] = (string) $recording->meetingID;
+
             $recordings[] = bigbluebuttonbn_getRecordingArrayRow($recording);
         }
 
+
+        $_SESSION["MAP_MEETING_RECORD"] = $MAP_MEETING_RECORD;
+        
         usort($recordings, 'bigbluebuttonbn_recordingBuildSorter');
     }
 
@@ -970,7 +984,7 @@ function bigbluebuttonbn_bbb_broker_add_error($org_msg, $new_msg='') {
 
 function bigbluebuttonbn_get_recording_data_row($bbbsession, $recording, $tools=["publishing", "deleting"]) {
     global $OUTPUT, $CFG, $USER;
-
+    
     $row = null;
 
     if ( $bbbsession['managerecordings'] || $recording['published'] == 'true' ) {
@@ -1011,9 +1025,9 @@ function bigbluebuttonbn_get_recording_data_row($bbbsession, $recording, $tools=
         foreach ( $recording['playbacks'] as $playback ) {
             //link das GRAVAÇÔES
             $newUrl = preg_replace('/.*playback.html/', $CFG->wwwroot .'/mod/bigbluebuttonbn/playbackProxy.php', $playback['url']);
+            $newUrl .='&id='.$bbbsession['cm']->id;
 
-
-             $recording_types .= $OUTPUT->action_link($newUrl, get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn'), null, array('title' => get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn'), 'target' => '_new') ).'&#32;';
+             $recording_types .= $OUTPUT->action_link($newUrl, get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn'), null, array('title' => get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn'), 'target' => '_blank') ).'&#32;';
         }
         $recording_types .= '</div>';
 
@@ -1509,7 +1523,7 @@ function bigbluebuttonbn_getRecordedMeetings($courseID, $bigbluebuttonbnID=NULL)
 
         //Execute select for loading records based on existent bigbluebuttonbns
         $records = $DB->get_records_select($table, $select);
-
+       
         //Remove duplicates
         $unique_records = array();
         foreach ($records as $key => $record) {
@@ -1529,7 +1543,6 @@ function bigbluebuttonbn_getRecordedMeetings($courseID, $bigbluebuttonbnID=NULL)
             }
         }
     }
-
     return $records;
 }
 

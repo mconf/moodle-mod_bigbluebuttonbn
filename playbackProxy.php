@@ -1,23 +1,14 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
- * This page provides the Administration -> ... -> Theme selector UI.
+ * Local Proxy view for Big Blue Button local security, need additional configuration to 
+ * work properly.
  *
- * @package block_mconf_records
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   mod_bigbluebuttonbn
+ * @author    Luiz Henrique Longhi Rossi  (lh.rossi [at] cognitivabrasil [dt] com [dt] br)
+ * @author    Marcos Freitas Nunes  (marcos [at] cognitivabrasil [dt] com [dt] br)
+ * @copyright 2017 Cognitiva Brasil Tecnologias Educacionais
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v2 or later
  */
 
 global $CFG;
@@ -25,54 +16,64 @@ global $CFG;
 
 require_once(dirname(__FILE__) . '/../../config.php');
 require_once("{$CFG->libdir}/adminlib.php");
-require_once(dirname(__FILE__).'/locallib.php');
+require_once(dirname(__FILE__) . '/locallib.php');
 
-require_login(1);
 
-$meetingId = required_param('meetingId', PARAM_ALPHANUM);
+$recordId = required_param('meetingId', PARAM_ALPHANUM);
+$id = optional_param('id', -1, PARAM_INT); // Course Module ID
 
-global $MEETING_ID;
-$MEETING_ID=$meetingId;
+$records = $_SESSION["MAP_MEETING_RECORD"];
 
-// Print the page header
-$PAGE->set_url($CFG->wwwroot . '/mod/bigbluebuttonbn/playbackProxy.php');
-$PAGE->set_cacheable(false);
-// $PAGE->set_pagelayout('incourse');
+$meetingId = $records[$recordId];
 
-echo $OUTPUT->header();
 
-$address = bigbluebuttonbn_get_cfg_server_url_default();
+if ($meetingId) {
 
-$address = str_replace("/bigbluebutton/", "", $address);
-$version = "/playback/presentation/0.9.0/";
-$playback = "playback.html";
+    $parts = explode('-', $meetingId);
 
-$meetingUrl = $address.$version.$playback."?meetingId".$meetingId;
+    $courseId = $parts[1];
+    $cm;
+    if ($id >= 0) {
+        $cm = get_coursemodule_from_id('bigbluebuttonbn', $id, 0, false, MUST_EXIST);
+    }
 
-	// $proxyAddress = "/proxy".$version;
-$proxyAddress = $version;
+    require_login($courseId, true, $cm);
+
+    $PAGE->set_url($CFG->wwwroot . '/mod/bigbluebuttonbn/playbackProxy.php');
+    $PAGE->set_cacheable(false);
+    $PAGE->set_pagelayout('base');
+
+    // Print the page header
+    echo $OUTPUT->header();
+
+    $address = str_replace("/bigbluebutton/", "", bigbluebuttonbn_get_cfg_server_url_default());
+    $version = "/playback/presentation/0.9.0/";
+    $playback = "playback.html";
+
+    $meetingUrl = $address . $version . $playback . "?meetingId" . $recordId;
+
+    // $proxyAddress = "/proxy".$version;
+    $proxyAddress = $version;
 
 // create a new cURL resource
-$ch = curl_init();
+    $ch = curl_init();
 
 // set URL and other appropriate options
-curl_setopt($ch, CURLOPT_URL, $meetingUrl);
-curl_setopt($ch, CURLOPT_HEADER, 0);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_URL, $meetingUrl);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-$page = $urlContent = curl_exec($ch);
+    $page = $urlContent = curl_exec($ch);
 // $page = file_get_contents($meetingUrl);
 
-$page = str_replace("href=\"", "href=\"".'https://vc.tjrr.jus.br/playback/presentation/0.9.0/', $page);
-$page = str_replace("src=\"", "src=\"".'https://vc.tjrr.jus.br/playback/presentation/0.9.0/', $page);
+    $page = str_replace("href=\"", "href=\"" . 'https://vc.tjrr.jus.br/playback/presentation/0.9.0/', $page);
+    $page = str_replace("src=\"", "src=\"" . 'https://vc.tjrr.jus.br/playback/presentation/0.9.0/', $page);
 
-echo $page;
+    echo $page;
 
-echo $OUTPUT->footer();
-
-
-
-
-
-
+    echo $OUTPUT->footer();
+} else {
+    //user don't have permission to access the meetingId parametrized (forbidden)
+    print_error(get_string('view_error_url_missing_parameters', 'bigbluebuttonbn'));
+}
 ?>
