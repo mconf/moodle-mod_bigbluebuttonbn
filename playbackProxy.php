@@ -74,6 +74,6 @@ if ($meetingId) {
     echo $OUTPUT->footer();
 } else {
     //user don't have permission to access the meetingId parametrized (forbidden)
-    print_error(get_string('view_error_url_missing_parameters', 'bigbluebuttonbn'));
+    print_error(get_string('view_nojoin', 'bigbluebuttonbn'));
 }
 ?>
