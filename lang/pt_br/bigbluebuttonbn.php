@@ -293,10 +293,11 @@ $string['view_recording_date'] = 'Data';
 $string['view_recording_description'] = 'Descrição';
 $string['view_recording_length'] = 'Comprimento';
 $string['view_recording_duration'] = 'Duração';
-$string['view_recording_recording'] = 'Gravação';
+$string['view_recording_recording'] = 'Processo';
 $string['view_recording_duration_min'] = 'min';
 $string['view_recording_name'] = 'Nome';
 $string['view_recording_tags'] = 'Tags';
+$string['view_recording_litigation'] = 'Processo';
 $string['view_recording_modal_button'] = 'Aplicar';
 $string['view_recording_modal_title'] = 'Atribuir valores à gravação';
 

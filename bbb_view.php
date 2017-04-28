@@ -17,6 +17,7 @@ $action = required_param('action', PARAM_TEXT);
 $name = optional_param('name', '', PARAM_TEXT);
 $description = optional_param('description', '', PARAM_TEXT);
 $tags = optional_param('tags', '', PARAM_TEXT);
+$litigation = optional_param('litigation', '', PARAM_TEXT);
 $errors = optional_param('errors', '', PARAM_TEXT);
 
 if ($id) {
@@ -87,6 +88,7 @@ switch (strtolower($action)) {
                             "meta_bbb-recording-tags" => (isset($tags) && $tags != '') ? $tags : $bbbsession['contextActivityTags'],
                             "meta_bn-recording-ready-url" => $bbbsession['recordingReadyURL'],
                             "meta_invitation-url" => $bbbsession['courseURL'],
+                            "meta_bbb-recording-litigation" => (isset($litigation) && $litigation != '') ? $litigation : $bbbsession['contextActivityLitigation'],
                     );
 
                     if (bigbluebuttonbn_server_offers_bn_capabilities() && bigbluebuttonbn_get_cfg_recordingready_enabled()) {
