@@ -24,7 +24,7 @@ $string['bigbluebuttonbn'] = 'Mconf';
 $string['config_general'] = 'General configuration';
 $string['config_general_description'] = 'These settings are <b>always</b> used';
 $string['config_server_url'] = 'Mconf Server URL';
-$string['config_server_url_description'] = 'The URL of your Mconf server must end with /bigbluebutton/. (This default URL is for a Mconf server provided by Blindside Networks that you can use for testing.)';
+$string['config_server_url_description'] = 'The URL of your Mconf server must end with /bigbluebutton/. (This default URL is for a BigBlueButton server provided by Blindside Networks that you can use for testing.)';
 $string['config_shared_secret'] = 'Mconf Shared Secret';
 $string['config_shared_secret_description'] = 'The security salt of your Mconf server.  (This default salt is for a Mconf server provided by Blindside Networks that you can use for testing.)';
 $string['config_detect_mobile'] = 'Detect Mobile Clients';
@@ -152,7 +152,7 @@ $string['mod_form_field_wait'] = 'Wait for moderator';
 $string['mod_form_field_wait_help'] = 'Viewers must wait until a moderator enters the session before they can do so';
 $string['mod_form_field_welcome'] = 'Welcome message';
 $string['mod_form_field_welcome_help'] = 'Replaces the default message setted up for the Mconf server. The message can includes keywords  (%%CONFNAME%%, %%DIALNUM%%, %%CONFNUM%%) which will be substituted automatically, and also html tags like <b>...</b> or <i></i> ';
-$string['mod_form_field_welcome_default'] = '<br>Welcome to <b>%%CONFNAME%%</b>!<br><br>To understand how Mconf works see our <a href="event:http://www.bigbluebutton.org/content/videos"><u>tutorial videos</u></a>.<br><br>To join the audio bridge click the headset icon (upper-left hand corner). <b>Please use a headset to avoid causing noise for others.</b>';
+$string['mod_form_field_welcome_default'] = '<br>Welcome to <b>%%CONFNAME%%</b>!<br><br>To understand how Mconf works see our <a href="event:https://www.youtube.com/playlist?list=PLVRBAdFv0iD_Cuj67ku9GYsO-BHcK34y5"><u>tutorial videos</u></a>.<br><br>To join the audio bridge click the headset icon (upper-left hand corner). <b>Please use a headset to avoid causing noise for others.</b>';
 $string['mod_form_field_participant_add'] = 'Add participant';
 $string['mod_form_field_participant_list'] = 'Participant list';
 $string['mod_form_field_participant_list_type_all'] = 'All users enrolled';
@@ -177,7 +177,7 @@ $string['mod_form_field_notification_msg_at'] = 'at';
 
 $string['modulename'] = 'Mconf Webconference';
 $string['modulenameplural'] = 'Mconf Webconference';
-$string['modulename_help'] = 'Mconf Webconference lets you create from within Moodle links to real-time on-line classrooms using Mconf, an open source web conferencing system for distance education.
+$string['modulename_help'] = 'Mconf Webconference lets you create from within Moodle links to real-time on-line classrooms using Mconf.
 
 Using Mconf Webconference you can specify for the title, description, calendar entry (which gives a date range for joining the session), groups, and details about the recording of the on-line session.
 
