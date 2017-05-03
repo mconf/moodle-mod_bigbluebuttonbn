@@ -53,6 +53,7 @@ $BIGBLUEBUTTONBN_CFG->bigbluebuttonbn_shared_secret = '8cd8ef52e8e101574e400365b
 $BIGBLUEBUTTONBN_CFG->bigbluebuttonbn_detect_mobile = null;
 
 
+
 //=========================================================================
 // 2. CONFIGURATION FOR "RECORDING" FEATURE
 //=========================================================================
