@@ -222,11 +222,25 @@ function bigbluebuttonbn_getRecordingsArray( $meetingIDs, $URL, $SALT ) {
         $xml = bigbluebuttonbn_wrap_xml_load_file( bigbluebuttonbn_getRecordingsURL( $URL, $SALT, $meetingIDs ) );
     }
 
+    
+
     if ( $xml && $xml->returncode == 'SUCCESS' && isset($xml->recordings) ) { //If there were meetings already created
+
+        $MAP_MEETING_RECORD = array();
         foreach ( $xml->recordings->recording as $recording ) {
+
+            $recordId = (string)$recording->recordID;
+
+            $recordId = str_replace('-', '', $recordId);
+        
+            $MAP_MEETING_RECORD[$recordId] = (string) $recording->meetingID;
+
             $recordings[] = bigbluebuttonbn_getRecordingArrayRow($recording);
         }
 
+
+        $_SESSION["MAP_MEETING_RECORD"] = $MAP_MEETING_RECORD;
+        
         usort($recordings, 'bigbluebuttonbn_recordingBuildSorter');
     }
 
@@ -997,14 +1011,11 @@ function bigbluebuttonbn_get_recording_data_row($bbbsession, $recording, $tools=
             $recording_types .= '<div id="playbacks-'.$recording['recordID'].'" '.$attributes.'" hidden>';
         }
         foreach ( $recording['playbacks'] as $playback ) {
-            // link name is the litigation field if set, otherwise it will be the format type
-            $link_string = '';
-            if ( isset($recording['meta_bbb-recording-litigation']) && !empty($recording['meta_bbb-recording-litigation']) ) {
-                $link_string = str_replace('"', '\"', $recording['meta_bbb-recording-litigation']);
-            } else {
-                $link_string = get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn');
-            }
-            $recording_types .= $OUTPUT->action_link($playback['url'], $link_string, null, array('title' => $link_string, 'target' => '_new') ).'&#32;';
+            //link das GRAVAÇÔES
+            $newUrl = preg_replace('/.*playback.html/', $CFG->wwwroot .'/mod/bigbluebuttonbn/playbackProxy.php', $playback['url']);
+            $newUrl .='&id='.$bbbsession['cm']->id;
+
+             $recording_types .= $OUTPUT->action_link($newUrl, get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn'), null, array('title' => get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn'), 'target' => '_blank') ).'&#32;';
         }
         $recording_types .= '</div>';
 
