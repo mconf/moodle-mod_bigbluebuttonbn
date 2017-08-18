@@ -10,7 +10,7 @@
  */
 defined('MOODLE_INTERNAL') || die();
 
-$string['activityoverview'] = 'You have upcoming bigbluebuttonbn sessions';
+$string['activityoverview'] = 'You have upcoming Mconf sessions';
 $string['bbbduetimeoverstartingtime'] = 'The due time for this activity must be greater than the starting time';
 $string['bbbdurationwarning'] = 'The maximum duration for this session is %duration% minutes.';
 $string['bbbrecordwarning'] = 'This session may be recorded.';
@@ -18,20 +18,22 @@ $string['bigbluebuttonbn:join'] = 'Join a meeting';
 $string['bigbluebuttonbn:moderate'] = 'Moderate a meeting';
 $string['bigbluebuttonbn:managerecordings'] = 'Manage recordings';
 $string['bigbluebuttonbn:addinstance'] = 'Add a new meeting';
-$string['bigbluebuttonbn'] = 'BigBlueButton';
+$string['bigbluebuttonbn'] = 'Mconf';
 
 
 $string['config_general'] = 'General configuration';
 $string['config_general_description'] = 'These settings are <b>always</b> used';
-$string['config_server_url'] = 'BigBlueButton Server URL';
-$string['config_server_url_description'] = 'The URL of your BigBlueButton server must end with /bigbluebutton/. (This default URL is for a BigBlueButton server provided by Blindside Networks that you can use for testing.)';
-$string['config_shared_secret'] = 'BigBlueButton Shared Secret';
-$string['config_shared_secret_description'] = 'The security salt of your BigBlueButton server.  (This default salt is for a BigBlueButton server provided by Blindside Networks that you can use for testing.)';
+$string['config_server_url'] = 'Mconf Server URL';
+$string['config_server_url_description'] = 'The URL of your Mconf server must end with /bigbluebutton/. (This default URL is for a BigBlueButton server provided by Blindside Networks that you can use for testing.)';
+$string['config_shared_secret'] = 'Mconf Shared Secret';
+$string['config_shared_secret_description'] = 'The security salt of your Mconf server.  (This default salt is for a Mconf server provided by Blindside Networks that you can use for testing.)';
+$string['config_detect_mobile'] = 'Detect Mobile Clients';
+$string['config_detect_mobile_description'] = 'Try to detect if the conference is being accessed from a mobile device and redirect to mobile client';
 
 $string['config_feature_recording'] = 'Configuration for "Recording" feature';
 $string['config_feature_recording_description'] = 'These settings are feature specific';
 $string['config_feature_recording_default'] = 'Recording feature enabled by default';
-$string['config_feature_recording_default_description'] = 'If enabled the sessions created in BigBlueButton will have recording capabilities.';
+$string['config_feature_recording_default_description'] = 'If enabled the sessions created in Mconf will have recording capabilities.';
 $string['config_feature_recording_editable'] = 'Recording feature can be edited';
 $string['config_feature_recording_editable_description'] = 'If checked the interface includes an option for enable and disable the recording feature.';
 $string['config_feature_recording_icons_enabled'] = 'Icons for recording management';
@@ -40,7 +42,7 @@ $string['config_feature_recording_icons_enabled_description'] = 'When enabled, t
 $string['config_feature_recordingtagging'] = 'Configuration for "Recording tagging" feature';
 $string['config_feature_recordingtagging_description'] = 'These settings are feature specific';
 $string['config_feature_recordingtagging_default'] = 'Recording tagging enabled by default';
-$string['config_feature_recordingtagging_default_description'] = 'Recording tagging feature is enabled by default when a new room or conference is added.<br>When this feature is enabled an intermediate page that allows to input a description and tags for the BigBlueButton session is shown to the first moderator joining. The description and tags are afterwards used to identify the recording in the list.';
+$string['config_feature_recordingtagging_default_description'] = 'Recording tagging feature is enabled by default when a new room or conference is added.<br>When this feature is enabled an intermediate page that allows to input a description and tags for the Mconf session is shown to the first moderator joining. The description and tags are afterwards used to identify the recording in the list.';
 $string['config_feature_recordingtagging_editable'] = 'Recording tagging feature can be edited';
 $string['config_feature_recordingtagging_editable_description'] = 'Recording tagging value by default can be edited when the room or conference is added or updated.';
 
@@ -60,7 +62,7 @@ $string['config_feature_waitformoderator_editable_description'] = 'Wait for mode
 $string['config_feature_waitformoderator_ping_interval'] = 'Wait for moderator ping (seconds)';
 $string['config_feature_waitformoderator_ping_interval_description'] = 'When the wait for moderator feature is enabled, the client pings for the status of the session each [number] seconds. This parameter defines the interval for requests made to the Moodle server';
 $string['config_feature_waitformoderator_cache_ttl'] = 'Wait for moderator cache TTL (seconds)';
-$string['config_feature_waitformoderator_cache_ttl_description'] = 'To support a heavy load of clients this plugin makes use of a cache. This parameter defines the time the cache will be kept before the next request is sent to the BigBlueButton server.';
+$string['config_feature_waitformoderator_cache_ttl_description'] = 'To support a heavy load of clients this plugin makes use of a cache. This parameter defines the time the cache will be kept before the next request is sent to the Mconf server.';
 
 $string['config_feature_voicebridge'] = 'Configuration for "Voice bridge" feature';
 $string['config_feature_voicebridge_description'] = 'These settings enable or disable options in the UI and also define default values for these options.';
@@ -68,7 +70,7 @@ $string['config_feature_voicebridge_editable'] = 'Conference voice bridge can be
 $string['config_feature_voicebridge_editable_description'] = 'Conference voice bridge number can be permanently assigned to a room conference. When assigned, the number can not be used by any other room or conference';
 
 $string['config_feature_preuploadpresentation'] = 'Configuration for "Pre-upload presentation" feature';
-$string['config_feature_preuploadpresentation_description'] = 'These settings enable or disable options in the UI and also define default values for these options. The feature works only if the Moodle server is accessible to BigBlueButton..';
+$string['config_feature_preuploadpresentation_description'] = 'These settings enable or disable options in the UI and also define default values for these options. The feature works only if the Moodle server is accessible to Mconf..';
 $string['config_feature_preuploadpresentation_enabled'] = 'Pre-uploading presentation enabled';
 $string['config_feature_preuploadpresentation_enabled_description'] = 'Preupload presentation feature is enabled in the UI when the room or conference is added or updated.';
 
@@ -99,15 +101,15 @@ $string['config_feature_sendnotifications_enabled'] = 'Send notifications enable
 $string['config_feature_sendnotifications_enabled_description'] = 'Send notifications feature is enabled in the UI when the room or conference is added or updated.';
 
 $string['config_extended_capabilities'] = 'Configuration for extended capabilities';
-$string['config_extended_capabilities_description'] = 'Configuration for extended capabilities when the BigBlueButton server offers them.';
+$string['config_extended_capabilities_description'] = 'Configuration for extended capabilities when the Mconf server offers them.';
 $string['config_extended_feature_uidelegation_enabled'] = 'UI delegation is enabled';
-$string['config_extended_feature_uidelegation_enabled_description'] = 'These settings enable or disable the UI delegation to the BigBlueButton server.';
+$string['config_extended_feature_uidelegation_enabled_description'] = 'These settings enable or disable the UI delegation to the Mconf server.';
 $string['config_extended_feature_recordingready_enabled'] = 'Notifications when recording ready enabled';
 $string['config_extended_feature_recordingready_enabled_description'] = 'Notifications when recording ready feature is enabled.';
 
 $string['config_warning_curl_not_installed'] = 'This feature requires the CURL extension for php installed and enabled. The settings will be accessible only if this condition is fulfilled.';
 
-$string['general_error_unable_connect'] = 'Unable to connect. Please check the url of the BigBlueButton server AND check to see if the BigBlueButton server is running.';
+$string['general_error_unable_connect'] = 'Unable to connect. Please check the url of the Mconf server AND check to see if the Mconf server is running.';
 
 $string['index_confirm_end'] = 'Do you wish to end the virtual class?';
 $string['index_disabled'] = 'disabled';
@@ -115,7 +117,7 @@ $string['index_enabled'] = 'enabled';
 $string['index_ending'] = 'Ending the virtual classroom ... please wait';
 $string['index_error_checksum'] = 'A checksum error occurred. Make sure you entered the correct salt.';
 $string['index_error_forciblyended'] = 'Unable to join this meeting because it has been manually ended.';
-$string['index_error_unable_display'] = 'Unable to display the meetings. Please check the url of the BigBlueButton server AND check to see if the BigBlueButton server is running.';
+$string['index_error_unable_display'] = 'Unable to display the meetings. Please check the url of the Mconf server AND check to see if the Mconf server is running.';
 $string['index_heading_actions'] = 'Actions';
 $string['index_heading_group'] = 'Group';
 $string['index_heading_moderator'] = 'Moderators';
@@ -123,7 +125,7 @@ $string['index_heading_name'] = 'Room';
 $string['index_heading_recording'] = 'Recording';
 $string['index_heading_users'] = 'Users';
 $string['index_heading_viewer'] = 'Viewers';
-$string['index_heading'] = 'BigBlueButton Rooms';
+$string['index_heading'] = 'Mconf Rooms';
 $string['mod_form_block_general'] = 'General settings';
 $string['mod_form_block_presentation'] = 'Presentation content';
 $string['mod_form_block_participants'] = 'Participants';
@@ -142,15 +144,15 @@ $string['mod_form_field_room_name'] = 'Room name';
 $string['mod_form_field_conference_name'] = 'Conference name';
 $string['mod_form_field_record'] = 'Session can be recorded';
 $string['mod_form_field_voicebridge'] = 'Voice bridge [####]';
-$string['mod_form_field_voicebridge_help'] = 'Voice conference number that participants enter to join the voice conference when using dial-in. A number between 1 and 9999 must be typed. If the value is 0 the static voicebridge number will be ignored and a random number will be generated by BigBlueButton. A number 7 will preced to the four digits typed';
+$string['mod_form_field_voicebridge_help'] = 'Voice conference number that participants enter to join the voice conference when using dial-in. A number between 1 and 9999 must be typed. If the value is 0 the static voicebridge number will be ignored and a random number will be generated by Mconf. A number 7 will preced to the four digits typed';
 $string['mod_form_field_voicebridge_format_error'] = 'Format error. You should input a number between 1 and 9999.';
 $string['mod_form_field_voicebridge_notunique_error'] = 'Not a unique value. This number is being used by another room or conference.';
 $string['mod_form_field_recordingtagging'] = 'Activate tagging interface';
 $string['mod_form_field_wait'] = 'Wait for moderator';
 $string['mod_form_field_wait_help'] = 'Viewers must wait until a moderator enters the session before they can do so';
 $string['mod_form_field_welcome'] = 'Welcome message';
-$string['mod_form_field_welcome_help'] = 'Replaces the default message setted up for the BigBlueButton server. The message can includes keywords  (%%CONFNAME%%, %%DIALNUM%%, %%CONFNUM%%) which will be substituted automatically, and also html tags like <b>...</b> or <i></i> ';
-$string['mod_form_field_welcome_default'] = '<br>Welcome to <b>%%CONFNAME%%</b>!<br><br>To understand how BigBlueButton works see our <a href="event:http://www.bigbluebutton.org/content/videos"><u>tutorial videos</u></a>.<br><br>To join the audio bridge click the headset icon (upper-left hand corner). <b>Please use a headset to avoid causing noise for others.</b>';
+$string['mod_form_field_welcome_help'] = 'Replaces the default message setted up for the Mconf server. The message can includes keywords  (%%CONFNAME%%, %%DIALNUM%%, %%CONFNUM%%) which will be substituted automatically, and also html tags like <b>...</b> or <i></i> ';
+$string['mod_form_field_welcome_default'] = '<br>Welcome to <b>%%CONFNAME%%</b>!<br><br>To understand how Mconf works see our <a href="event:https://www.youtube.com/playlist?list=PLVRBAdFv0iD_Cuj67ku9GYsO-BHcK34y5"><u>tutorial videos</u></a>.<br><br>To join the audio bridge click the headset icon (upper-left hand corner). <b>Please use a headset to avoid causing noise for others.</b>';
 $string['mod_form_field_participant_add'] = 'Add participant';
 $string['mod_form_field_participant_list'] = 'Participant list';
 $string['mod_form_field_participant_list_type_all'] = 'All users enrolled';
@@ -174,28 +176,28 @@ $string['mod_form_field_notification_msg_modified'] = 'modified';
 $string['mod_form_field_notification_msg_at'] = 'at';
 
 
-$string['modulename'] = 'BigBlueButtonBN';
-$string['modulenameplural'] = 'BigBlueButtonBN';
-$string['modulename_help'] = 'BigBlueButtonBN lets you create from within Moodle links to real-time on-line classrooms using BigBlueButton, an open source web conferencing system for distance education.
+$string['modulename'] = 'Mconf Webconference';
+$string['modulenameplural'] = 'Mconf Webconference';
+$string['modulename_help'] = 'Mconf Webconference lets you create from within Moodle links to real-time on-line classrooms using Mconf.
 
-Using BigBlueButtonBN you can specify for the title, description, calendar entry (which gives a date range for joining the session), groups, and details about the recording of the on-line session.
+Using Mconf Webconference you can specify for the title, description, calendar entry (which gives a date range for joining the session), groups, and details about the recording of the on-line session.
 
-To view later recordings, add a RecordingsBN resource to this course.';
+To view later recordings, add a Mconf Recordings resource to this course.';
 $string['modulename_link'] = 'BigBlueButtonBN/view';
 $string['starts_at'] = 'Starts';
 $string['started_at'] = 'Started';
 $string['ends_at'] = 'Ends';
-$string['pluginadministration'] = 'BigBlueButton administration';
-$string['pluginname'] = 'BigBlueButtonBN';
+$string['pluginadministration'] = 'Mconf administration';
+$string['pluginname'] = 'Mconf Webconference';
 $string['serverhost'] = 'Server Name';
 $string['view_error_no_group_student'] = 'You have not been enrolled in a group. Please contact your Teacher or the Administrator.';
 $string['view_error_no_group_teacher'] = 'There are no groups configured yet. Please set up groups or contact the Administrator.';
 $string['view_error_no_group'] = 'There are no groups configured yet. Please set up groups before trying to join the meeting.';
-$string['view_error_unable_join_student'] = 'Unable to connect to the BigBlueButton server. Please contact your Teacher or the Administrator.';
-$string['view_error_unable_join_teacher'] = 'Unable to connect to the BigBlueButton server. Please contact the Administrator.';
-$string['view_error_unable_join'] = 'Unable to join the meeting. Please check the url of the BigBlueButton server AND check to see if the BigBlueButton server is running.';
-$string['view_error_bigbluebutton'] = 'BigBlueButton responded with errors. {$a}';
-$string['view_error_create'] = 'The BigBlueButton server responded with an error message, the meeting could not be created.';
+$string['view_error_unable_join_student'] = 'Unable to connect to the Mconf server. Please contact your Teacher or the Administrator.';
+$string['view_error_unable_join_teacher'] = 'Unable to connect to the Mconf server. Please contact the Administrator.';
+$string['view_error_unable_join'] = 'Unable to join the meeting. Please check the url of the Mconf server AND check to see if the Mconf server is running.';
+$string['view_error_bigbluebutton'] = 'Mconf responded with errors. {$a}';
+$string['view_error_create'] = 'The Mconf server responded with an error message, the meeting could not be created.';
 $string['view_error_max_concurrent'] = 'Number of concurrent meetings allowed has been reached.';
 $string['view_error_userlimit_reached'] = 'The number of users allowed in a meeting has been reached.';
 $string['view_error_url_missing_parameters'] = 'There are parameters missing in this URL';
@@ -205,7 +207,7 @@ $string['view_groups_selection_join'] = 'Join';
 $string['view_groups_selection'] = 'Select the group you want to join and confirm the action';
 $string['view_login_moderator'] = 'Logging in as moderator ...';
 $string['view_login_viewer'] = 'Logging in as viewer ...';
-$string['view_noguests'] = 'The BigBlueButtonBN is not open to guests';
+$string['view_noguests'] = 'The Mconf Webconference is not open to guests';
 $string['view_nojoin'] = 'You are not in a role allowed to join this session.';
 $string['view_recording_list_actionbar_delete'] = 'Delete';
 $string['view_recording_list_actionbar_deleting'] = 'Deleting';
@@ -227,6 +229,8 @@ $string['view_recording_button_import'] = 'Import recording links';
 $string['view_recording_button_return'] = 'Go back';
 $string['view_recording_format_presentation'] = 'presentation';
 $string['view_recording_format_video'] = 'video';
+$string['view_recording_format_presentation_export'] = 'download html';
+$string['view_recording_format_presentation_video'] = 'download video';
 $string['view_section_title_presentation'] = 'Presentation file';
 $string['view_section_title_recordings'] = 'Recordings';
 $string['view_message_norecordings'] = 'There are no recording for this meeting.';
@@ -295,15 +299,15 @@ $string['view_recording_tags'] = 'Tags';
 $string['view_recording_modal_button'] = 'Apply';
 $string['view_recording_modal_title'] = 'Set values for recording';
 
-$string['event_activity_created'] = 'BigBlueButtonBN activity created';
-$string['event_activity_deleted'] = 'BigBlueButtonBN activity deleted';
-$string['event_activity_modified'] = 'BigBlueButtonBN activity modified';
-$string['event_activity_viewed'] = 'BigBlueButtonBN activity viewed';
-$string['event_activity_viewed_all'] = 'BigBlueButtonBN activity management viewed';
-$string['event_meeting_created'] = 'BigBlueButtonBN meeting created';
-$string['event_meeting_ended'] = 'BigBlueButtonBN meeting forcibly ended';
-$string['event_meeting_joined'] = 'BigBlueButtonBN meeting joined';
-$string['event_meeting_left'] = 'BigBlueButtonBN meeting left';
+$string['event_activity_created'] = 'Mconf Webconference activity created';
+$string['event_activity_deleted'] = 'Mconf Webconference activity deleted';
+$string['event_activity_modified'] = 'Mconf Webconference activity modified';
+$string['event_activity_viewed'] = 'Mconf Webconference activity viewed';
+$string['event_activity_viewed_all'] = 'Mconf Webconference activity management viewed';
+$string['event_meeting_created'] = 'Mconf Webconference meeting created';
+$string['event_meeting_ended'] = 'Mconf Webconference meeting forcibly ended';
+$string['event_meeting_joined'] = 'Mconf Webconference meeting joined';
+$string['event_meeting_left'] = 'Mconf Webconference meeting left';
 $string['event_recording_deleted'] = 'Recording deleted';
 $string['event_recording_imported'] = 'Recording imported';
 $string['event_recording_published'] = 'Recording published';
