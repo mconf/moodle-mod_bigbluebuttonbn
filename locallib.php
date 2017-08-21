@@ -1043,6 +1043,9 @@ function bigbluebuttonbn_get_recording_data_row($bbbsession, $recording, $tools=
             $recording_types .= '<div id="playbacks-'.$recording['recordID'].'" '.$attributes.'" hidden>';
         }
         foreach ( $recording['playbacks'] as $playback ) {
+            if ($playback['type'] == 'presentation_video') {
+                continue;
+            }
             $recording_types .= $OUTPUT->action_link($playback['url'], get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn'), null, array('title' => get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn'), 'target' => '_new') ).'&#32;';
         }
         $recording_types .= '</div>';
