@@ -133,6 +133,13 @@ function bigbluebuttonbn_getRecordingsURL( $URL, $SALT, $meetingID=null ) {
     return $url;
 }
 
+function bigbluebuttonbn_getRecordingTokenURL( $URL, $SALT, $meetingID, $username, $userip ) {
+    $base_url_record = $URL."api/getRecordingToken?";
+    $params = "meetingID=".$meetingID."&authUser=".$username."&authAddr=".$userip;
+    $url = $base_url_record.$params."&checksum=".sha1("getRecordingToken".$params.$SALT);
+    return $url;
+}
+
 function bigbluebuttonbn_getDeleteRecordingsURL( $recordID, $URL, $SALT ) {
     $url_delete = $URL."api/deleteRecordings?";
     $params = 'recordID='.urlencode($recordID);
@@ -258,6 +265,18 @@ function bigbluebuttonbn_getRecordingArray( $recordingID, $meetingID, $URL, $SAL
     }
 
     return $recordingArray;
+}
+
+function bigbluebuttonbn_getRecordingToken( $URL, $SALT, $meetingID, $username, $userip ) {
+    $recordingToken = "";
+
+    $xml = bigbluebuttonbn_wrap_xml_load_file( bigbluebuttonbn_getRecordingTokenURL( $URL, $SALT, $meetingID, $username, $userip ) );
+
+    if ( $xml && $xml->returncode == 'SUCCESS' && isset($xml->token) ) { //If there were meetings already created
+        $recordingToken = $xml->token;
+        }
+
+    return $recordingToken;
 }
 
 function bigbluebuttonbn_getRecordingArrayRow( $recording ) {
@@ -1042,8 +1061,10 @@ function bigbluebuttonbn_get_recording_data_row($bbbsession, $recording, $tools=
         } else {
             $recording_types .= '<div id="playbacks-'.$recording['recordID'].'" '.$attributes.'" hidden>';
         }
+
         foreach ( $recording['playbacks'] as $playback ) {
-            $recording_types .= $OUTPUT->action_link($playback['url'], get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn'), null, array('title' => get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn'), 'target' => '_new') ).'&#32;';
+            //$playback['url']."&token=".$token
+            $recording_types .= $OUTPUT->action_link($CFG->wwwroot."/mod/bigbluebuttonbn/playback.php?id=".$_GET['id']."&recordID=".$recording['recordID']."&meetingID=".$recording['meetingID'], get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn'), null, array('title' => get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn'), 'target' => '_new') ).'&#32;';
         }
         $recording_types .= '</div>';
 
