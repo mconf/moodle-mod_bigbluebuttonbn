@@ -239,6 +239,8 @@ if (empty($error)) {
                         $callback_response['status'] = "true";
                         $callback_response_data = json_encode($callback_response);
                         echo "{$params['callback']}({$callback_response_data});";
+
+                      }else{
                         // ERROR: User not authorized to execute unpublish command.
                         header("HTTP/1.0 401 Unauthorized. User not authorized to execute unpublish command");
                     }
