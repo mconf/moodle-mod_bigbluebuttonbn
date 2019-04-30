@@ -190,6 +190,17 @@ class renderer {
     }
 
     /**
+     * Validate if general section will be shown.
+     *
+     * @return boolean
+     */
+    public static function section_format_shown() {
+        global $CFG;
+        return (!isset($CFG->bigbluebuttonbn['presentation_default']) ||
+                !isset($CFG->bigbluebuttonbn['presentation_video_default']));
+    }
+
+    /**
      * Validate if record meeting section  will be shown.
      *
      * @return boolean

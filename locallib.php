@@ -2408,6 +2408,24 @@ function bigbluebuttonbn_settings_general(&$renderer) {
 }
 
 /**
+ * Helper function renders format settings if the feature is enabled.
+ *
+ * @param object $renderer
+ *
+ * @return void
+ */
+function bigbluebuttonbn_settings_format(&$renderer) {
+    // Format Configuration.
+    if ((boolean)\mod_bigbluebuttonbn\settings\renderer::section_format_shown()) {
+        $renderer->render_group_header('format');
+        $renderer->render_group_element('presentation_default',
+            $renderer->render_group_element_checkbox('presentation_default', 1));
+        $renderer->render_group_element('presentation_video_default',
+            $renderer->render_group_element_checkbox('presentation_video_default', 1));      
+    }
+}
+
+/**
  * Helper function renders record settings if the feature is enabled.
  *
  * @param object $renderer

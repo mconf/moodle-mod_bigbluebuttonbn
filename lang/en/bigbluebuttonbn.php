@@ -54,6 +54,13 @@ $string['config_server_url_description'] = 'The URL of your BigBlueButton server
 $string['config_shared_secret'] = 'BigBlueButton Shared Secret';
 $string['config_shared_secret_description'] = 'The security salt of your BigBlueButton server.  (This default salt is for a BigBlueButton server provided by Blindside Networks that you can use for testing.)';
 
+$string['config_format'] = 'Configuration for "Format" options';
+$string['config_format_description'] = 'These settings are about formats supported';
+$string['config_presentation_default'] = 'Presetantion format enabled by default';
+$string['config_presentation_default_description'] = 'If enabled the presentation format will be avaliable in Elos.';
+$string['config_presentation_video_default'] = 'Presetantion video format enabled by default';
+$string['config_presentation_video_default_description'] = 'If enabled the presentation video format will be avaliable in Elos.';
+
 $string['config_recording'] = 'Configuration for "Record meeting" feature';
 $string['config_recording_description'] = 'These settings are feature specific';
 $string['config_recording_default'] = 'Recording feature enabled by default';
