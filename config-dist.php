@@ -58,6 +58,7 @@ global $CFG;
 
 $CFG->bigbluebuttonbn['server_url'] = 'http://test-install.blindsidenetworks.com/bigbluebutton/';
 $CFG->bigbluebuttonbn['shared_secret'] = '8cd8ef52e8e101574e400365b55e11a6';
+$CFG->bigbluebuttonbn['bigbluebuttonbn_detect_mobile'] = null;
 
 /*
  * 2. CONFIGURATION FOR "RECORDING" FEATURE
