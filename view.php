@@ -298,7 +298,7 @@ function bigbluebuttonbn_view_render(&$bbbsession, $activity) {
     $enabledfeatures = bigbluebuttonbn_get_enabled_features($typeprofiles, $type);
     $pinginterval = (int)\mod_bigbluebuttonbn\locallib\config::get('waitformoderator_ping_interval') * 1000;
     // JavaScript for locales.
-    $PAGE->requires->strings_for_js(array_keys(bigbluebuttonbn_get_strings_for_js()), 'bigbluebuttonbn');
+    // $PAGE->requires->strings_for_js(array_keys(bigbluebuttonbn_get_strings_for_js()), 'bigbluebuttonbn');
     // JavaScript variables.
     $jsvars = array('activity' => $activity, 'ping_interval' => $pinginterval,
         'locale' => bigbluebuttonbn_get_localcode(), 'profile_features' => $typeprofiles[0]['features']);
@@ -446,7 +446,7 @@ function bigbluebuttonbn_view_render_recordings(&$bbbsession, $enabledfeatures, 
     $recordings = bigbluebuttonbn_get_recordings(
         $bbbsession['course']->id, $bigbluebuttonbnid, $enabledfeatures['showroom'],
         $bbbsession['bigbluebuttonbn']->recordings_deleted
-      );
+      );    
     if ($enabledfeatures['importrecordings']) {
         // Get recording links.
         $recordingsimported = bigbluebuttonbn_get_recordings_imported_array(

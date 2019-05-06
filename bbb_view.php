@@ -168,6 +168,7 @@ function bigbluebutton_bbb_view_playback_href($href, $mid, $rid, $rtype) {
     if (empty($recordings)) {
         return '';
     }
+
     return bigbluebutton_bbb_view_playback_href_lookup($recordings[$rid]['playbacks'], $rtype);
 }
 

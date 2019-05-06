@@ -212,6 +212,18 @@ function bigbluebuttonbn_get_recordings_array($meetingids, $recordingids = []) {
     return bigbluebuttonbn_get_recordings_array_filter($recordingidsarray, $recordings);
 }
 
+function bigbluebuttonbn_getRecordingToken( $URL, $SALT, $meetingID, $username, $userip ) {
+    $recordingToken = "";
+
+    $xml = bigbluebuttonbn_wrap_xml_load_file( bigbluebuttonbn_getRecordingTokenURL( $URL, $SALT, $meetingID, $username, $userip ) );
+
+    if ( $xml && $xml->returncode == 'SUCCESS' && isset($xml->token) ) { //If there were meetings already created
+        $recordingToken = $xml->token;
+        }
+
+    return $recordingToken;
+}
+
 /**
  * Helper function to fetch recordings from a BigBlueButton server.
  *
@@ -469,6 +481,12 @@ function bigbluebuttonbn_end_meeting($meetingid, $modpw) {
     }
     // If the server is unreachable, then prompts the user of the necessary action.
     return null;
+}
+
+function bigbluebuttonbn_getMeetingsURL( $URL, $SALT ) {
+    $base_url = $URL."api/getMeetings?";
+    $url = $base_url.'&checksum='.sha1("getMeetings".$SALT);
+    return $url;
 }
 
 /**
@@ -1563,9 +1581,16 @@ function bigbluebuttonbn_get_recording_data_row_type($recording, $bbbsession, $p
     if (!bigbluebuttonbn_include_recording_data_row_type($recording, $bbbsession, $playback)) {
         return '';
     }
+    $CFG->bigbluebuttonbn['token_auth'] = true;
+    $CFG->bigbluebuttonbn['formats_allowed'] = 'presentation';
     $text = get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn');
-    $href = $CFG->wwwroot . '/mod/bigbluebuttonbn/bbb_view.php?action=play&bn=' . $bbbsession['bigbluebuttonbn']->id .
-      '&mid='.$recording['meetingID'] . '&rid=' . $recording['recordID'] . '&rtype=' . $playback['type'];
+    if($CFG->bigbluebuttonbn['token_auth']){
+      $href = $CFG->wwwroot . '/mod/bigbluebuttonbn/playback.php?id=' . $bbbsession['bigbluebuttonbn']->id .
+        '&recordID=' . $recording['recordID'] . '&format=' . $CFG->bigbluebuttonbn['formats_allowed'];
+    }else{
+      $href = $CFG->wwwroot . '/mod/bigbluebuttonbn/bbb_view.php?action=play&bn=' . $bbbsession['bigbluebuttonbn']->id .
+        '&mid='.$recording['meetingID'] . '&rid=' . $recording['recordID'] . '&rtype=' . $playback['type'];
+    }
     if (!isset($recording['imported']) || !isset($recording['protected']) || $recording['protected'] === 'false') {
         $href .= '&href='.urlencode(trim($playback['url']));
     }
