@@ -343,7 +343,6 @@ function bigbluebuttonbn_view_render(&$bbbsession, $activity) {
     // Show mobile client options if mobile is detected
     if ($bbbsession['ismobilesession'] && $bbbsession['detectmobile'] )        
     {
-        echo '<script>alert("teste")</script>';
         echo $OUTPUT->box_start ('generalbox boxaligncenter', 'bigbluebuttonbn_view_action_button_box');
         include 'mobile_apps.php';
         echo $OUTPUT->box_end();
