@@ -446,7 +446,7 @@ function bigbluebuttonbn_view_render_recordings(&$bbbsession, $enabledfeatures, 
     $recordings = bigbluebuttonbn_get_recordings(
         $bbbsession['course']->id, $bigbluebuttonbnid, $enabledfeatures['showroom'],
         $bbbsession['bigbluebuttonbn']->recordings_deleted
-      );    
+      );
     if ($enabledfeatures['importrecordings']) {
         // Get recording links.
         $recordingsimported = bigbluebuttonbn_get_recordings_imported_array(

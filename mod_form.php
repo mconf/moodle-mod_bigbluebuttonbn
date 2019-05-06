@@ -93,7 +93,7 @@ class mod_bigbluebuttonbn_mod_form extends moodleform_mod {
         // Add standard buttons, common to all modules.
         $this->add_action_buttons();
         // JavaScript for locales.
-        $PAGE->requires->strings_for_js(array_keys(bigbluebuttonbn_get_strings_for_js()), 'bigbluebuttonbn');
+        // $PAGE->requires->strings_for_js(array_keys(bigbluebuttonbn_get_strings_for_js()), 'bigbluebuttonbn');
         $jsvars['participantData'] = bigbluebuttonbn_get_participant_data($context);
         $jsvars['participantList'] = $participantlist;
         $jsvars['iconsEnabled'] = (boolean)$cfg['recording_icons_enabled'];

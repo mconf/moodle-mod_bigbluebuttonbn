@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- *View a BigBlueButton recording with getRecordingToken authorization
+ * View a BigBlueButton recording with getRecordingToken authorization
  *
  * @package   mod_bigbluebuttonbn
  * @author    Alan Velasques Santos  (alan [at] cognitivabrasil [dt] com [dt] br)
@@ -29,7 +29,7 @@ require_once(dirname(__FILE__) . '/locallib.php');
 // ...require_once(dirname(__FILE__) . '/Mobile_Detect.php');
 
 $id  = optional_param('id', 0, PARAM_INT); // bigbluebuttonbn instance ID
-$recordID  = optional_param('recordID', '', PARAM_TEXT); // Record ID
+$recordid  = optional_param('recordID', '', PARAM_TEXT); // Record ID
 $format  = optional_param('format', '', PARAM_TEXT); // Presentation format
 
 if ($id) {
@@ -42,7 +42,7 @@ if ($id) {
 
 require_login($course, true, $cm);
 
-$module_version = get_config('mod_bigbluebuttonbn', 'version');
+$moduleversion = get_config('mod_bigbluebuttonbn', 'version');
 $context = context_module::instance($cm->id);
 
 bigbluebuttonbn_event_log(BIGBLUEBUTTON_EVENT_ACTIVITY_VIEWED, $bigbluebuttonbn, $cm);
@@ -105,19 +105,19 @@ $bbbsession['context'] = $context;
 // Metadata (origin)
 $bbbsession['origin'] = "Moodle";
 $bbbsession['originVersion'] = $CFG->release;
-$parsedUrl = parse_url($CFG->wwwroot);
-$bbbsession['originServerName'] = $parsedUrl['host'];
+$parsedurl = parse_url($CFG->wwwroot);
+$bbbsession['originServerName'] = $parsedurl['host'];
 $bbbsession['originServerUrl'] = $CFG->wwwroot;
 $bbbsession['originServerCommonName'] = '';
-$bbbsession['originTag'] = 'moodle-mod_bigbluebuttonbn (' . $module_version . ')';
+$bbbsession['originTag'] = 'moodle-mod_bigbluebuttonbn (' . $moduleversion . ')';
 
 // Mobile Detection
 $bbbsession['detectmobile'] = $CFG->bigbluebuttonbn_detect_mobile;
 $bbbsession['ismobilesession'] = bigbluebutton_is_device_for_mobile_client();
 
 // Validates if the BigBlueButton server is running.
-$serverVersion = bigbluebuttonbn_get_server_version();
-if (!isset($serverVersion)) { // Server is not working.
+$serverversion = bigbluebuttonbn_get_server_version();
+if (!isset($serverversion)) { // Server is not working.
     if ($bbbsession['administrator']) {
             print_error('view_error_unable_join', 'bigbluebuttonbn', $CFG->wwwroot . '/admin/settings.php?section=modsettingbigbluebuttonbn');
     } else if ($bbbsession['moderator']) {
@@ -171,24 +171,24 @@ $bbbsession['logoutURL'] = $CFG->wwwroot . '/mod/bigbluebuttonbn/bbb_view.php?ac
 $bbbsession['recordingReadyURL'] = $CFG->wwwroot . '/mod/bigbluebuttonbn/bbb_broker.php?action=recording_ready';
 $bbbsession['joinURL'] = $CFG->wwwroot . '/mod/bigbluebuttonbn/bbb_view.php?action=join&id=' . $id . '&bigbluebuttonbn=' . $bbbsession['bigbluebuttonbn']->id;
 
-//Pegando a URL do playback e verificando se existe mais de um, se sim pega o correto de acordo com o recordID
+// Pegando a URL do playback e verificando se existe mais de um, se sim pega o correto de acordo com o recordID
 $record = bigbluebuttonbn_get_recordings_array($_GET['meetingID'], $_GET['recordID']);
 $url = '';
 foreach ($record['playbacks'] as $playback) {
-  $verifica_meeting = explode('meetingId=',$playback['url']);
-  if($verifica_meeting[count($verifica_meeting)-1] == $_GET['recordID']){
-    $url = $playback['url'];
-    break;
-  }
+    $verificameeting = explode('meetingId=', $playback['url']);
+    if ($verificameeting[count($verificameeting) - 1] == $_GET['recordID']) {
+      $url = $playback['url'];
+      break;
+    }
 }
 
-//Chamar a função que gera o token;
-$token = bigbluebuttonbn_getRecordingToken($bbbsession['endpoint'], $bbbsession['shared_secret'],$_GET['recordID'],$USER->username,$USER->lastip);
+// Chamar a função que gera o token;
+$token = bigbluebuttonbn_getRecordingToken($bbbsession['endpoint'], $bbbsession['shared_secret'], $_GET['recordID'], $USER->username, $USER->lastip);
 
 // Output starts here.
 echo "<iframe src='".$url."&token=".$token."' frameborder='0' style='overflow:hidden;height:100%;width:100%;' height='100%' width='100%'></iframe>";
 
-function bigbluebutton_is_device_for_mobile_client(){
+function bigbluebutton_is_device_for_mobile_client() {
     // $detect = new Mobile_Detect;
     // return $detect->isAndroidOS() || $detect->isiOS();
     return false;
