@@ -294,7 +294,7 @@ class renderer {
         return (!isset($CFG->bigbluebuttonbn['participant_moderator_default']));
     }
 
-   /**
+    /**
      * Validate if formats section will be shown.
      *
      * @return boolean

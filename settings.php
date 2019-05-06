@@ -33,7 +33,7 @@ require_once(dirname(__FILE__).'/locallib.php');
 if ($ADMIN->fulltree) {
     // Configuration for BigBlueButton.
     $renderer = new \mod_bigbluebuttonbn\settings\renderer($settings);
-    
+
     // Renders general warning message for settings.
     bigbluebuttonbn_settings_general_warning($renderer);
     // Renders general settings.

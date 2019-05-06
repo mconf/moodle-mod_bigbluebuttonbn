@@ -98,19 +98,19 @@ function bigbluebuttonbn_get_join_url($meetingid, $username, $pw, $logouturl, $c
     'fullName' => $username,
     'password' => $pw,
     'logoutURL' => $logouturl,
-];
+    ];
     // Choose between Adobe Flash or HTML5 Client.
-if ( $clienttype == BIGBLUEBUTTON_CLIENTTYPE_HTML5 ) {
-    $data['joinViaHtml5'] = 'true';
-}
+    if ( $clienttype == BIGBLUEBUTTON_CLIENTTYPE_HTML5 ) {
+        $data['joinViaHtml5'] = 'true';
+    }
 
-if (!is_null($configtoken)) {
-    $data['configToken'] = $configtoken;
-}
-if (!is_null($userid)) {
-    $data['userID'] = $userid;
-}
-return \mod_bigbluebuttonbn\locallib\bigbluebutton::action_url('join', $data);
+    if (!is_null($configtoken)) {
+        $data['configToken'] = $configtoken;
+    }
+    if (!is_null($userid)) {
+        $data['userID'] = $userid;
+    }
+    return \mod_bigbluebuttonbn\locallib\bigbluebutton::action_url('join', $data);
 }
 
 /**
@@ -158,19 +158,19 @@ function bigbluebuttonbn_get_meeting_info_array($meetingid) {
     if ($xml && $xml->returncode == 'SUCCESS' && empty($xml->messageKey)) {
         // Meeting info was returned.
         return array('returncode' => $xml->returncode,
-           'meetingID' => $xml->meetingID,
-           'moderatorPW' => $xml->moderatorPW,
-           'attendeePW' => $xml->attendeePW,
-           'hasBeenForciblyEnded' => $xml->hasBeenForciblyEnded,
-           'running' => $xml->running,
-           'recording' => $xml->recording,
-           'startTime' => $xml->startTime,
-           'endTime' => $xml->endTime,
-           'participantCount' => $xml->participantCount,
-           'moderatorCount' => $xml->moderatorCount,
-           'attendees' => $xml->attendees,
-           'metadata' => $xml->metadata,
-       );
+         'meetingID' => $xml->meetingID,
+         'moderatorPW' => $xml->moderatorPW,
+         'attendeePW' => $xml->attendeePW,
+         'hasBeenForciblyEnded' => $xml->hasBeenForciblyEnded,
+         'running' => $xml->running,
+         'recording' => $xml->recording,
+         'startTime' => $xml->startTime,
+         'endTime' => $xml->endTime,
+         'participantCount' => $xml->participantCount,
+         'moderatorCount' => $xml->moderatorCount,
+         'attendees' => $xml->attendees,
+         'metadata' => $xml->metadata,
+        );
     }
     if ($xml) {
         // Either failure or success without meeting info.
@@ -546,10 +546,10 @@ function bigbluebuttonbn_wrap_xml_load_file_curl_request($url, $method = 'GET', 
         }
         $options = array();
         $options['CURLOPT_HTTPHEADER'] = array(
-           'Content-Type: '.$contenttype,
-           'Content-Length: '.strlen($data),
-           'Content-Language: en-US',
-       );
+         'Content-Type: '.$contenttype,
+         'Content-Length: '.strlen($data),
+         'Content-Language: en-US',
+        );
 
         return $c->post($url, $data, $options);
     }
@@ -2385,7 +2385,7 @@ function bigbluebuttonbn_settings_general_warning(&$renderer) {
     global $BIGBLUEBUTTONBN_CFG;
     if (isset($BIGBLUEBUTTONBN_CFG)) {
         $renderer->render_warning_message('general_warning',
-           get_string('config_warning_bigbluebuttonbn_cfg_deprecated', 'bigbluebuttonbn'));
+         get_string('config_warning_bigbluebuttonbn_cfg_deprecated', 'bigbluebuttonbn'));
     }
 }
 
@@ -2589,10 +2589,7 @@ function bigbluebuttonbn_settings_participants(&$renderer) {
         $renderer->render_group_header('participant');
         // UI for 'participants' feature.
         $roles = bigbluebuttonbn_get_roles();
-
-
         $owner = array('0' => get_string('mod_form_field_participant_list_type_owner', 'bigbluebuttonbn'));
-
 
         $renderer->render_group_element('participant_moderator_default',
             $renderer->render_group_element_configmultiselect('participant_moderator_default',
@@ -2655,7 +2652,7 @@ function bigbluebuttonbn_settings_clienttype(&$renderer) {
         $default = intval((int)\mod_bigbluebuttonbn\locallib\config::get('clienttype_default'));
 
         $choices = array(BIGBLUEBUTTON_CLIENTTYPE_FLASH => get_string('mod_form_block_clienttype_flash', 'bigbluebuttonbn'),
-           BIGBLUEBUTTON_CLIENTTYPE_HTML5 => get_string('mod_form_block_clienttype_html5', 'bigbluebuttonbn'));
+         BIGBLUEBUTTON_CLIENTTYPE_HTML5 => get_string('mod_form_block_clienttype_html5', 'bigbluebuttonbn'));
         $renderer->render_group_element('clienttype_default',
             $renderer->render_group_element_configselect('clienttype_default',
                 $default, $choices));
@@ -2716,15 +2713,14 @@ function bigbluebuttonbn_include_recording_data_row_type($recording, $bbbsession
     }
     // All types that are not statistics are included.
     if ($playback['type'] != 'statistics') {
-        //Check if the playback types are formats allowed in BBB config.
-        $formats_allowed = explode(',', \mod_bigbluebuttonbn\locallib\config::get('formats_allowed'));
-        $all_formats = explode(',', \mod_bigbluebuttonbn\locallib\config::get('formats_allowed_default'));
-        
-        $playback_key = array_search($playback['type'], $all_formats);
-        $format_key = array_search($playback_key, $formats_allowed);
+        // Check if the playback types are formats allowed in BBB config.
+        $formatsallowed = explode(',', \mod_bigbluebuttonbn\locallib\config::get('formats_allowed'));
+        $allformats = explode(',', \mod_bigbluebuttonbn\locallib\config::get('formats_allowed_default'));
+        $playbackkey = array_search($playback['type'], $allformats);
+        $formatkey = array_search($playbackkey, $formatsallowed);
 
-        // Needed to check if false because index 0 is intended as false
-        if ($format_key === false) {
+        // Needed to check if false because index 0 is evuated as false.
+        if ($formatkey === false) {
             return false;
         } else {
             return true;
