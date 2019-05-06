@@ -126,7 +126,7 @@ if (!isset($serverversion)) { // Server is not working.
             print_error('view_error_unable_join_student', 'bigbluebuttonbn', $CFG->wwwroot . '/course/view.php?id=' . $bigbluebuttonbn->course);
     }
 } else {
-    $xml = bigbluebuttonbn_wrap_xml_load_file(bigbluebuttonbn_getMeetingsURL($bbbsession['endpoint'], $bbbsession['shared_secret']));
+    $xml = bigbluebuttonbn_wrap_xml_load_file(bigbluebuttonbn_getmeetingsurl($bbbsession['endpoint'], $bbbsession['shared_secret']));
     if (!isset($xml) || !isset($xml->returncode) || $xml->returncode == 'FAILED') { // The shared secret is wrong
         if ($bbbsession['administrator']) {
                     print_error('view_error_unable_join', 'bigbluebuttonbn', $CFG->wwwroot . '/admin/settings.php?section=modsettingbigbluebuttonbn');
@@ -177,13 +177,13 @@ $url = '';
 foreach ($record['playbacks'] as $playback) {
     $verificameeting = explode('meetingId=', $playback['url']);
     if ($verificameeting[count($verificameeting) - 1] == $_GET['recordID']) {
-      $url = $playback['url'];
-      break;
+        $url = $playback['url'];
+        break;
     }
 }
 
 // Chamar a função que gera o token;
-$token = bigbluebuttonbn_getRecordingToken($bbbsession['endpoint'], $bbbsession['shared_secret'], $_GET['recordID'], $USER->username, $USER->lastip);
+$token = bigbluebuttonbn_getrecordingtoken($bbbsession['endpoint'], $bbbsession['shared_secret'], $_GET['recordID'], $USER->username, $USER->lastip);
 
 // Output starts here.
 echo "<iframe src='".$url."&token=".$token."' frameborder='0' style='overflow:hidden;height:100%;width:100%;' height='100%' width='100%'></iframe>";
