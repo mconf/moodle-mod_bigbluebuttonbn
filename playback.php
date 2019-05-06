@@ -1,17 +1,17 @@
 <?php
-/**
- * View a BigBlueButton recording with getRecordingToken authorization
- *
- * @package   mod_bigbluebuttonbn
- * @author    Alan Velasques Santos  (alan [at] cognitivabrasil [dt] com [dt] br)
- * @author    Luiz Rossi  (lh [dt] rossi [at] cognitivabrasil [dt] com [dt] br)
- * @copyright 2010-2015 Cognitiva Brasil.
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v2 or later
- */
+//
+// View a BigBlueButton recording with getRecordingToken authorization
+//
+// @package   mod_bigbluebuttonbn
+// @author    Alan Velasques Santos  (alan [at] cognitivabrasil [dt] com [dt] br)
+// @author    Luiz Rossi  (lh [dt] rossi [at] cognitivabrasil [dt] com [dt] br)
+// @copyright 2010-2015 Cognitiva Brasil.
+// @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v2 or later
+//
 
 require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
 require_once(dirname(__FILE__) . '/locallib.php');
-//require_once(dirname(__FILE__) . '/Mobile_Detect.php');
+// ...require_once(dirname(__FILE__) . '/Mobile_Detect.php');
 
 $id  = optional_param('id', 0, PARAM_INT); // bigbluebuttonbn instance ID
 $recordID  = optional_param('recordID', '', PARAM_TEXT); // Record ID
