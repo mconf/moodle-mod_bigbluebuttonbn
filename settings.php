@@ -30,6 +30,8 @@ global $CFG;
 
 require_once(dirname(__FILE__).'/locallib.php');
 
+
+
 if ($ADMIN->fulltree) {
     // Configuration for BigBlueButton.
     $renderer = new \mod_bigbluebuttonbn\settings\renderer($settings);
@@ -37,13 +39,14 @@ if ($ADMIN->fulltree) {
     bigbluebuttonbn_settings_general_warning($renderer);
     // Renders general settings.
     bigbluebuttonbn_settings_general($renderer);
-    // Evaluates if recordings are enabled for the Moodle site.
-// if( !isset($CFG->bigbluebuttonbn['bigbluebuttonbn_detect_mobile']) ) {
-//         $settings->add( new admin_setting_configcheckbox( 'bigbluebuttonbn_detect_mobile',
-//             get_string( 'config_detect_mobile', 'bigbluebuttonbn' ),
-//             get_string( 'config_detect_mobile_description', 'bigbluebuttonbn' ), 1));
-//       }
+    
+if( !isset($CFG->bigbluebuttonbn['bigbluebuttonbn_detect_mobile']) ) {
+        $settings->add( new admin_setting_configcheckbox( 'bigbluebuttonbn_detect_mobile',
+            get_string( 'config_detect_mobile', 'bigbluebuttonbn' ),
+            get_string( 'config_detect_mobile_description', 'bigbluebuttonbn' ), BIGBLUEBUTTONBN_MOBILE_DETECT));
+       }
 
+// Evaluates if recordings are enabled for the Moodle site.
     if (\mod_bigbluebuttonbn\locallib\config::recordings_enabled()) {
         // Renders settings for record feature.
         bigbluebuttonbn_settings_record($renderer);
