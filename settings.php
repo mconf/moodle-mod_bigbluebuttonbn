@@ -54,10 +54,10 @@ if ($ADMIN->fulltree) {
     bigbluebuttonbn_settings_userlimit($renderer);
     bigbluebuttonbn_settings_duration($renderer);
     bigbluebuttonbn_settings_participants($renderer);
+    bigbluebuttonbn_settings_formats_allowed($renderer);
     bigbluebuttonbn_settings_notifications($renderer);
     bigbluebuttonbn_settings_clienttype($renderer);
     // Renders settings for extended capabilities.
     bigbluebuttonbn_settings_extended($renderer);
     // Renders format option settings.
-    bigbluebuttonbn_settings_format($renderer);
 }

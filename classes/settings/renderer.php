@@ -190,17 +190,6 @@ class renderer {
     }
 
     /**
-     * Validate if general section will be shown.
-     *
-     * @return boolean
-     */
-    public static function section_format_shown() {
-        global $CFG;
-        return (!isset($CFG->bigbluebuttonbn['presentation_default']) ||
-                !isset($CFG->bigbluebuttonbn['presentation_video_default']));
-    }
-
-    /**
      * Validate if record meeting section  will be shown.
      *
      * @return boolean
@@ -303,6 +292,16 @@ class renderer {
     public static function section_moderator_default_shown() {
         global $CFG;
         return (!isset($CFG->bigbluebuttonbn['participant_moderator_default']));
+    }
+
+   /**
+     * Validate if formats section will be shown.
+     *
+     * @return boolean
+     */
+    public static function section_formats_allowed_shown() {
+        global $CFG;
+        return (!isset($CFG->bigbluebuttonbn['formats_allowed']));
     }
 
     /**
