@@ -31,7 +31,6 @@ $string['config_shared_secret'] = 'Chave de segurança';
 $string['config_shared_secret_description'] = 'Chave de segurança do servidor Elos. (Esta chave padrão é de um servidor BigBlueButton de testes da Blindside Networks.)';
 $string['config_detect_mobile'] = 'Detectar Acesso de Clientes Móveis';
 $string['config_detect_mobile_description'] = 'Tentar detectar se a conferência está sendo acessada por um dispositivo móvel e redirecionar para o cliente móvel.';
-
 $string['config_feature_recording'] = 'Configurações da funcionalidade "Gravação"';
 $string['config_feature_recording_description'] = 'Essas configurações são específicas para esta funcionalidade';
 $string['config_feature_recording_default'] = 'Gravação habilitada por padrão';
