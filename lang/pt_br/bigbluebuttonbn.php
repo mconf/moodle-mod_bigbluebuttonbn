@@ -153,7 +153,7 @@ $string['mod_form_field_recordingtagging'] = 'Ativar tagueamento de gravações'
 $string['mod_form_field_wait'] = 'Esperar pelo moderador';
 $string['mod_form_field_wait_help'] = 'Os participantes devem aguardar a entrada de um moderador';
 $string['mod_form_field_welcome'] = 'Mensagem de boas-vindas';
-$string['mod_form_field_welcome_help'] = 'Substitua a mensagem padrão configurada pelo Mconf. A mensagem pode incluir palavras-chave (%%CONFNAME%%, %%DIALNUM%%, %%CONFNUM%%) que serão substituídas automaticamente, e também tags HTML como <b>...</b> ou <i></i>';
+$string['mod_form_field_welcome_help'] = 'Substitua a mensagem padrão configurada pelo Elos. A mensagem pode incluir palavras-chave (%%CONFNAME%%, %%DIALNUM%%, %%CONFNUM%%) que serão substituídas automaticamente, e também tags HTML como <b>...</b> ou <i></i>';
 $string['mod_form_field_welcome_default'] = '<br>Seja bem-vindo à sala <b>%%CONFNAME%%</b>!<br><br>Para entender como o Elos funciona, veja nossos <a href="event:https://www.youtube.com/playlist?list=PLVRBAdFv0iD_Cuj67ku9GYsO-BHcK34y5"><u>vídeos tutoriais</u></a>.<br><br>Para habilitar seu microfone, clique no ícone do headset (canto superior esquerdo). <b>Por favor, utilize um headset para não causar ruído para os demais participantes. Para uma melhor experiência, utilize rede cabeada sempre que possível.</b>';
 $string['mod_form_field_participant_add'] = 'Adicionar participante';
 $string['mod_form_field_participant_list'] = 'Lista de participantes';
