@@ -26,7 +26,6 @@
 
 require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
 require_once(dirname(__FILE__) . '/locallib.php');
-// ...require_once(dirname(__FILE__) . '/Mobile_Detect.php');
 
 $id  = optional_param('id', 0, PARAM_INT); // bigbluebuttonbn instance ID
 $recordid  = optional_param('recordID', '', PARAM_TEXT); // Record ID
@@ -111,10 +110,6 @@ $bbbsession['originServerUrl'] = $CFG->wwwroot;
 $bbbsession['originServerCommonName'] = '';
 $bbbsession['originTag'] = 'moodle-mod_bigbluebuttonbn (' . $moduleversion . ')';
 
-// Mobile Detection
-$bbbsession['detectmobile'] = $CFG->bigbluebuttonbn_detect_mobile;
-$bbbsession['ismobilesession'] = bigbluebutton_is_device_for_mobile_client();
-
 // Validates if the BigBlueButton server is running.
 $serverversion = bigbluebuttonbn_get_server_version();
 if (!isset($serverversion)) { // Server is not working.
@@ -186,10 +181,4 @@ foreach ($record['playbacks'] as $playback) {
 $token = bigbluebuttonbn_getrecordingtoken($bbbsession['endpoint'], $bbbsession['shared_secret'], $_GET['recordID'], $USER->username, $USER->lastip);
 
 // Output starts here.
-echo "<iframe src='".$url."&token=".$token."' frameborder='0' style='overflow:hidden;height:100%;width:100%;' height='100%' width='100%'></iframe>";
-
-function bigbluebutton_is_device_for_mobile_client() {
-    // $detect = new Mobile_Detect;
-    // return $detect->isAndroidOS() || $detect->isiOS();
-    return false;
-}
+echo "<iframe src='".$url."&token=".$token."' frameborder='0' style='position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;' height='100%' width='100%'></iframe>";
