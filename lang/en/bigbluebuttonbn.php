@@ -54,6 +54,13 @@ $string['config_server_url_description'] = 'The URL of your Elos server must end
 $string['config_shared_secret'] = 'Elos Shared Secret';
 $string['config_shared_secret_description'] = 'The security salt of your Elos server.  (This default salt is for a Elos server provided by Blindside Networks that you can use for testing.)';
 
+$string['config_formats'] = 'Configuration for "Format" options';
+$string['config_formats_description'] = 'These settings are about formats supported';
+$string['config_presentation'] = 'Presetantion format enabled by default';
+$string['config_presentation_description'] = 'If enabled the presentation format will be avaliable in Elos.';
+$string['config_presentation_video'] = 'Presetantion video format enabled by default';
+$string['config_presentation_video_description'] = 'If enabled the presentation video format will be avaliable in Elos.';
+
 $string['config_recording'] = 'Configuration for "Record meeting" feature';
 $string['config_recording_description'] = 'These settings are feature specific';
 $string['config_recording_default'] = 'Recording feature enabled by default';
@@ -117,6 +124,9 @@ $string['config_participant'] = 'Participant configuration';
 $string['config_participant_description'] = 'These settings define the role by default for participants in a conference.';
 $string['config_participant_moderator_default'] = 'Moderator by default';
 $string['config_participant_moderator_default_description'] = 'This rule is used by default when a new room is added.';
+
+$string['config_formats_allowed'] = 'Select the formats allowed';
+$string['config_formats_allowed_description'] = 'This rule is used to define which formats will be allowed.';
 
 $string['config_userlimit'] = 'Configuration for "User limit" feature';
 $string['config_userlimit_description'] = 'These settings enable or disable options in the UI and also define default values for these options.';
@@ -284,6 +294,7 @@ $string['view_recording_list_recording'] = 'Recording';
 $string['view_recording_button_import'] = 'Import recording links';
 $string['view_recording_button_return'] = 'Go back';
 $string['view_recording_format_presentation'] = 'presentation';
+$string['view_recording_format_presentation_video'] = 'video presentation';
 $string['view_recording_format_video'] = 'video';
 $string['view_recording_format_statistics'] = 'statistics';
 $string['view_recording_format_errror_unreachable'] = 'The URL for this recording format is unreachable.';

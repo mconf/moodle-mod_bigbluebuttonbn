@@ -99,6 +99,8 @@ function xmldb_bigbluebuttonbn_upgrade($oldversion = 0) {
         unset_config('bigbluebuttonbn_importrecordings_from_deleted_activities_enabled', '');
         $cfgvalue = get_config('', 'bigbluebuttonbn_moderator_default');
         set_config('bigbluebuttonbn_participant_moderator_default', $cfgvalue, '');
+        $cfgvalue = get_config('', 'bigbluebuttonbn_formats_allowed');
+        set_config('bigbluebuttonbn_formats_allowed', $cfgvalue, '');
         unset_config('bigbluebuttonbn_moderator_default', '');
         // Update db version tag.
         upgrade_mod_savepoint(true, 2017101000, 'bigbluebuttonbn');

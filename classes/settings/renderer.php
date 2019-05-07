@@ -295,6 +295,16 @@ class renderer {
     }
 
     /**
+     * Validate if formats section will be shown.
+     *
+     * @return boolean
+     */
+    public static function section_formats_allowed_shown() {
+        global $CFG;
+        return (!isset($CFG->bigbluebuttonbn['formats_allowed']));
+    }
+
+    /**
      * Validate if send notification section will be shown.
      *
      * @return boolean

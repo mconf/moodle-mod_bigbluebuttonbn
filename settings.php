@@ -33,6 +33,7 @@ require_once(dirname(__FILE__).'/locallib.php');
 if ($ADMIN->fulltree) {
     // Configuration for BigBlueButton.
     $renderer = new \mod_bigbluebuttonbn\settings\renderer($settings);
+
     // Renders general warning message for settings.
     bigbluebuttonbn_settings_general_warning($renderer);
     // Renders general settings.
@@ -53,8 +54,10 @@ if ($ADMIN->fulltree) {
     bigbluebuttonbn_settings_userlimit($renderer);
     bigbluebuttonbn_settings_duration($renderer);
     bigbluebuttonbn_settings_participants($renderer);
+    bigbluebuttonbn_settings_formats_allowed($renderer);
     bigbluebuttonbn_settings_notifications($renderer);
     bigbluebuttonbn_settings_clienttype($renderer);
     // Renders settings for extended capabilities.
     bigbluebuttonbn_settings_extended($renderer);
+    // Renders format option settings.
 }

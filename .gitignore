@@ -10,3 +10,4 @@
 
 /vendor/*
 !/vendor/firebase/
+/nbproject/private/
