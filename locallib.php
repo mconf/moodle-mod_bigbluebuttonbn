@@ -78,6 +78,8 @@ const BIGBLUEBUTTON_EVENT_MEETING_START = 'meeting_start';
 const BIGBLUEBUTTON_CLIENTTYPE_FLASH = 0;
 /** @var BIGBLUEBUTTON_CLIENTTYPE_HTML5 integer that defines the bigbluebuttonbn default web client based on Adobe HTML5 */
 const BIGBLUEBUTTON_CLIENTTYPE_HTML5 = 1;
+/** @var BIGBLUEBUTTONBN_MOBILE_DETECT integer that defines the bigbluebuttonbn default will detect mobile clients */
+const BIGBLUEBUTTONBN_MOBILE_DETECT = 0;
 
 /**
  * Builds and retunrs a url for joining a bigbluebutton meeting.
