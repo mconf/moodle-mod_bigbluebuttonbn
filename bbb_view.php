@@ -140,7 +140,7 @@ switch (strtolower($action)) {
         // Since the meeting is already running, we just join the session.
         bigbluebutton_bbb_view_join_meeting($bbbsession, $cm, $bigbluebuttonbn);
         break;
-    case 'play':
+    case 'play':        
         $href = bigbluebutton_bbb_view_playback_href($href, $mid, $rid, $rtype);
         // Moodle event logger: Create an event for meeting left.
         bigbluebuttonbn_event_log(BIGBLUEBUTTON_EVENT_RECORDING_VIEWED, $bigbluebuttonbn, $cm, ['other' => $rid]);
@@ -329,7 +329,7 @@ function bigbluebutton_bbb_view_join_meeting($bbbsession, $cm, $bigbluebuttonbn)
     }
     $joinurl = bigbluebuttonbn_get_join_url($bbbsession['meetingid'], $bbbsession['username'],
         $password, $bbbsession['logoutURL'], null, $bbbsession['userID'], $bbbsession['clienttype']);
-    
+
     // Mobile detection
              if ($bbbsession['detectmobile'] && $bbbsession['ismobilesession']) {
                $join_url = preg_replace('/http[s]?:\/\//i', 'bigbluebutton://', $join_url);

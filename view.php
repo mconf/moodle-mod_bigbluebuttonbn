@@ -242,7 +242,7 @@ function bigbluebuttonbn_view_groups(&$bbbsession) {
     }
     // Separate or visible group mode.
     $groups = groups_get_activity_allowed_groups($bbbsession['cm']);
-    if (empty($groups)) {        
+    if (empty($groups)) {
         // No groups in this course.
         bigbluebuttonbn_view_message_box($bbbsession, get_string('view_groups_nogroups_warning', 'bigbluebuttonbn'), 'info', true);
         return;
@@ -255,7 +255,7 @@ function bigbluebuttonbn_view_groups(&$bbbsession) {
     // Assign group default values.
     $bbbsession['meetingid'] .= '['.$bbbsession['group'].']';
     $bbbsession['meetingname'] .= ' ('.$groupname.')';
-    if (count($groups) == 0) {        
+    if (count($groups) == 0) {
         // Only the All participants group exists.
         bigbluebuttonbn_view_message_box($bbbsession, get_string('view_groups_notenrolled_warning', 'bigbluebuttonbn'), 'info');
         return;
@@ -285,10 +285,10 @@ function bigbluebuttonbn_view_message_box(&$bbbsession, $message, $type = 'warni
     }
     echo $OUTPUT->box_start('generalbox boxaligncenter');
     echo '<br><div class="alert alert-' . $type . '">' . $message . '</div>';
-    echo $OUTPUT->box_end();    
+    echo $OUTPUT->box_end();
 
 }
- 
+
 
 
 /**
@@ -341,7 +341,7 @@ function bigbluebuttonbn_view_render(&$bbbsession, $activity) {
     }
     echo $output.html_writer::empty_tag('br').html_writer::empty_tag('br').html_writer::empty_tag('br');
     // Show mobile client options if mobile is detected
-    if ($bbbsession['ismobilesession'] && $bbbsession['detectmobile'] )        
+    if ($bbbsession['ismobilesession'] && $bbbsession['detectmobile'] )
     {
         echo $OUTPUT->box_start ('generalbox boxaligncenter', 'bigbluebuttonbn_view_action_button_box');
         include 'mobile_apps.php';
@@ -432,8 +432,8 @@ function bigbluebuttonbn_view_render_room(&$bbbsession, $activity, &$jsvars) {
         'opening' => $openingtime,
         'closing' => $closingtime,
     );
-    // Main box.    
-    $output  = $OUTPUT->box_start('generalbox boxaligncenter', 'bigbluebuttonbn_view_message_box');    
+    // Main box.
+    $output  = $OUTPUT->box_start('generalbox boxaligncenter', 'bigbluebuttonbn_view_message_box');
     $output .= '<br><span id="status_bar"></span>';
     $output .= '<br><span id="control_panel"></span>';
     $output .= $OUTPUT->box_end();
@@ -445,7 +445,7 @@ function bigbluebuttonbn_view_render_room(&$bbbsession, $activity, &$jsvars) {
         $output .= bigbluebuttonbn_view_ended($bbbsession);
     }
 
-    //echo $OUTPUT->box_start('generalbox boxaligncenter', 'bigbluebuttonbn_view_message_box');    
+    //echo $OUTPUT->box_start('generalbox boxaligncenter', 'bigbluebuttonbn_view_message_box');
     return $output;
 }
 
@@ -493,7 +493,7 @@ function bigbluebuttonbn_view_render_recordings(&$bbbsession, $enabledfeatures, 
           );
     // If there are meetings with recordings load the data to the table.
     if ($bbbsession['bigbluebuttonbn']->recordings_html) {
-        // Render a plain html table.
+        // Render a plain html table.        
         return bigbluebuttonbn_output_recording_table($bbbsession, $recordings)."\n";
     }
     // JavaScript variables for recordings with YUI.

@@ -192,6 +192,7 @@ function bigbluebuttonbn_get_meeting_info_array($meetingid) {
  */
 function bigbluebuttonbn_get_recordings_array($meetingids, $recordingids = []) {
     $meetingidsarray = $meetingids;
+
     if (!is_array($meetingids)) {
         $meetingidsarray = explode(',', $meetingids);
     }
@@ -200,6 +201,7 @@ function bigbluebuttonbn_get_recordings_array($meetingids, $recordingids = []) {
         return array();
     }
     $recordings = bigbluebuttonbn_get_recordings_array_fetch($meetingidsarray);
+
     // Sort recordings.
     uasort($recordings, 'bigbluebuttonbn_recording_build_sorter');
     // Filter recordings based on recordingIDs.
@@ -217,7 +219,7 @@ function bigbluebuttonbn_get_recordings_array($meetingids, $recordingids = []) {
 function bigbluebuttonbn_getrecordingtoken( $url, $salt, $meetingid, $username, $userip ) {
     $recordingtoken = "";
 
-    $xml = bigbluebuttonbn_wrap_xml_load_file( bigbluebuttonbn_getRecordingTokenURL( $url, $salt, $meetingid, $username, $userip ) );
+    $xml = bigbluebuttonbn_wrap_xml_load_file( bigbluebuttonbn_getrecordingtokenurl( $url, $salt, $meetingid, $username, $userip ) );
 
     if ( $xml && $xml->returncode == 'SUCCESS' && isset($xml->token) ) { // If there were meetings already created
         $recordingtoken = $xml->token;
@@ -225,6 +227,14 @@ function bigbluebuttonbn_getrecordingtoken( $url, $salt, $meetingid, $username, 
 
     return $recordingtoken;
 }
+
+function bigbluebuttonbn_getrecordingtokenurl( $url, $salt, $meetingid, $username, $userip ) {
+    $baseurlrecord = $url."api/getRecordingToken?";
+    $params = "meetingID=".$meetingid."&authUser=".$username."&authAddr=".$userip;
+    $url = $baseurlrecord.$params."&checksum=".sha1("getRecordingToken".$params.$salt);
+    return $url;
+}
+
 
 /**
  * Helper function to fetch recordings from a BigBlueButton server.
@@ -255,6 +265,7 @@ function bigbluebuttonbn_get_recordings_array_fetch_page($mids) {
     $recordings = array();
     // Do getRecordings is executed using a method GET (supported by all versions of BBB).
     $url = \mod_bigbluebuttonbn\locallib\bigbluebutton::action_url('getRecordings', ['meetingID' => implode(',', $mids)]);
+
     $xml = bigbluebuttonbn_wrap_xml_load_file($url);
     if ($xml && $xml->returncode == 'SUCCESS' && isset($xml->recordings)) {
         // If there were meetings already created.
@@ -1603,7 +1614,7 @@ function bigbluebuttonbn_get_recording_data_row_type($recording, $bbbsession, $p
         'data-action' => 'play',
         'data-target' => $playback['type'],
         'data-href' => $href,
-    );
+    );    
     if (!bigbluebuttonbn_is_bn_server() && !bigbluebuttonbn_is_valid_resource(trim($playback['url']))) {
         $linkattributes['class'] = 'btn btn-sm btn-warning';
         $linkattributes['title'] = get_string('view_recording_format_errror_unreachable', 'bigbluebuttonbn');

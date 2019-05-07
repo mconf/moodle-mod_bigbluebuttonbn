@@ -90,7 +90,6 @@ $bbbsession['record'] = $bigbluebuttonbn->record;
 if ($bigbluebuttonbn->record) {
     $bbbsession['welcome'] .= '<br><br>' . get_string('bbbrecordwarning', 'bigbluebuttonbn');
 }
-$bbbsession['tagging'] = $bigbluebuttonbn->tagging;
 
 $bbbsession['openingtime'] = $bigbluebuttonbn->openingtime;
 $bbbsession['closingtime'] = $bigbluebuttonbn->closingtime;
@@ -167,8 +166,10 @@ $bbbsession['recordingReadyURL'] = $CFG->wwwroot . '/mod/bigbluebuttonbn/bbb_bro
 $bbbsession['joinURL'] = $CFG->wwwroot . '/mod/bigbluebuttonbn/bbb_view.php?action=join&id=' . $id . '&bigbluebuttonbn=' . $bbbsession['bigbluebuttonbn']->id;
 
 // Pegando a URL do playback e verificando se existe mais de um, se sim pega o correto de acordo com o recordID
-$record = bigbluebuttonbn_get_recordings_array($_GET['meetingID'], $_GET['recordID']);
+$records = bigbluebuttonbn_get_recordings($course->id, $bigbluebuttonbn->id);
+$record = $records[$recordid];
 $url = '';
+
 foreach ($record['playbacks'] as $playback) {
     $verificameeting = explode('meetingId=', $playback['url']);
     if ($verificameeting[count($verificameeting) - 1] == $_GET['recordID']) {
