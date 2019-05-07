@@ -2718,7 +2718,7 @@ function bigbluebuttonbn_include_recording_data_row_type($recording, $bbbsession
 
         // Check if the playback types are formats allowed in BBB config.
         $formatsallowed = explode(',', \mod_bigbluebuttonbn\locallib\config::get('formats_allowed'));
-
+        // Explode returns an array with the position [0] with a null object if the result is empty.
         if ($formatsallowed[0]!=null) {
         
             $allformats = explode(',', \mod_bigbluebuttonbn\locallib\config::get('formats_allowed_default'));
@@ -2734,7 +2734,7 @@ function bigbluebuttonbn_include_recording_data_row_type($recording, $bbbsession
         } else {
             return false;
         }
-        
+        return true;
     }
 
     // Exclude imported recordings.
