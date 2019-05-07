@@ -1,4 +1,19 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * Language File
  *
@@ -269,8 +284,6 @@ $string['view_message_tab_close'] = 'Esta janela/aba deve ser fechada manualment
 
 
 $string['view_groups_selection_warning'] = 'Existe uma sala de conferência para cada grupo. Se você tem acesso a mais de um, certifique-se de selecionar o correto.';
-//$string['view_groups_selection_message'] = 'Select the group you want to participate.';
-//$string['view_groups_selection_button'] = 'Select';
 $string['view_conference_action_join'] = 'Entrar na sessão';
 $string['view_conference_action_end'] = 'Encerrar sessão';
 

@@ -100,19 +100,19 @@ function bigbluebuttonbn_get_join_url($meetingid, $username, $pw, $logouturl, $c
     'fullName' => $username,
     'password' => $pw,
     'logoutURL' => $logouturl,
-    ];
+];
     // Choose between Adobe Flash or HTML5 Client.
-    if ( $clienttype == BIGBLUEBUTTON_CLIENTTYPE_HTML5 ) {
-        $data['joinViaHtml5'] = 'true';
-    }
+if ( $clienttype == BIGBLUEBUTTON_CLIENTTYPE_HTML5 ) {
+    $data['joinViaHtml5'] = 'true';
+}
 
-    if (!is_null($configtoken)) {
-        $data['configToken'] = $configtoken;
-    }
-    if (!is_null($userid)) {
-        $data['userID'] = $userid;
-    }
-    return \mod_bigbluebuttonbn\locallib\bigbluebutton::action_url('join', $data);
+if (!is_null($configtoken)) {
+    $data['configToken'] = $configtoken;
+}
+if (!is_null($userid)) {
+    $data['userID'] = $userid;
+}
+return \mod_bigbluebuttonbn\locallib\bigbluebutton::action_url('join', $data);
 }
 
 /**
@@ -172,7 +172,7 @@ function bigbluebuttonbn_get_meeting_info_array($meetingid) {
          'moderatorCount' => $xml->moderatorCount,
          'attendees' => $xml->attendees,
          'metadata' => $xml->metadata,
-        );
+     );
     }
     if ($xml) {
         // Either failure or success without meeting info.
@@ -580,7 +580,7 @@ function bigbluebuttonbn_wrap_xml_load_file_curl_request($url, $method = 'GET', 
          'Content-Type: '.$contenttype,
          'Content-Length: '.strlen($data),
          'Content-Language: en-US',
-        );
+     );
 
         return $c->post($url, $data, $options);
     }
@@ -2751,18 +2751,26 @@ function bigbluebuttonbn_include_recording_data_row_type($recording, $bbbsession
     }
     // All types that are not statistics are included.
     if ($playback['type'] != 'statistics') {
+
         // Check if the playback types are formats allowed in BBB config.
         $formatsallowed = explode(',', \mod_bigbluebuttonbn\locallib\config::get('formats_allowed'));
-        $allformats = explode(',', \mod_bigbluebuttonbn\locallib\config::get('formats_allowed_default'));
-        $playbackkey = array_search($playback['type'], $allformats);
-        $formatkey = array_search($playbackkey, $formatsallowed);
+        // Explode returns an array with the position [0] with a null object if the result is empty.
+        if ($formatsallowed[0]!=null) {
+        
+            $allformats = explode(',', \mod_bigbluebuttonbn\locallib\config::get('formats_allowed_default'));
+            $playbackkey = array_search($playback['type'], $allformats);
+            $formatkey = array_search($playbackkey, $formatsallowed);
 
         // Needed to check if false because index 0 is evuated as false.
-        if ($formatkey === false) {
-            return false;
+            if ($formatkey === false) {
+                return false;
+            } else {
+                return true;
+            }
         } else {
-            return true;
+            return false;
         }
+        return true;
     }
 
     // Exclude imported recordings.

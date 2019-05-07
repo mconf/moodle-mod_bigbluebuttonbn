@@ -188,7 +188,7 @@ function bigbluebuttonbn_view_bbbsession_set($context, &$bbbsession) {
     $bbbsession['originTag'] = 'moodle-mod_bigbluebuttonbn ('.get_config('mod_bigbluebuttonbn', 'version').')';
     $bbbsession['bnserver'] = bigbluebuttonbn_is_bn_server();
 
-    // Mobile Detection
+    // Mobile Detection.
     $bbbsession['detectmobile'] = $CFG->bigbluebuttonbn_detect_mobile;
     $bbbsession['ismobilesession'] = bigbluebutton_is_device_for_mobile_client();
 
@@ -288,8 +288,11 @@ function bigbluebuttonbn_view_message_box(&$bbbsession, $message, $type = 'warni
     echo $OUTPUT->box_end();
 
 }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b3cd8bc38a85227731055b476407ff5310cb59de
 
 /**
  * Displays the general view.
@@ -340,13 +343,18 @@ function bigbluebuttonbn_view_render(&$bbbsession, $activity) {
         $output .= bigbluebuttonbn_render_warning($recordingsdisabled, 'danger');
     }
     echo $output.html_writer::empty_tag('br').html_writer::empty_tag('br').html_writer::empty_tag('br');
+<<<<<<< HEAD
     // Show mobile client options if mobile is detected
     if ($bbbsession['ismobilesession'] && $bbbsession['detectmobile'] )
     {
+=======
+
+    // Show mobile client options if mobile is detected.
+    if ($bbbsession['ismobilesession'] && $bbbsession['detectmobile'] ) {
+>>>>>>> b3cd8bc38a85227731055b476407ff5310cb59de
         echo $OUTPUT->box_start ('generalbox boxaligncenter', 'bigbluebuttonbn_view_action_button_box');
         include 'mobile_apps.php';
         echo $OUTPUT->box_end();
-
     }
 
     $PAGE->requires->yui_module('moodle-mod_bigbluebuttonbn-broker', 'M.mod_bigbluebuttonbn.broker.init', array($jsvars));
@@ -493,7 +501,7 @@ function bigbluebuttonbn_view_render_recordings(&$bbbsession, $enabledfeatures, 
           );
     // If there are meetings with recordings load the data to the table.
     if ($bbbsession['bigbluebuttonbn']->recordings_html) {
-        // Render a plain html table.        
+        // Render a plain html table.
         return bigbluebuttonbn_output_recording_table($bbbsession, $recordings)."\n";
     }
     // JavaScript variables for recordings with YUI.
@@ -605,7 +613,7 @@ function bigbluebuttonbn_view_warning_general(&$bbbsession) {
       );
 }
 
-function bigbluebutton_is_device_for_mobile_client(){
-   $detect = new Mobile_Detect;
-       return $detect->isAndroidOS() || $detect->isiOS();
-    }
+function bigbluebutton_is_device_for_mobile_client() {
+    $detect = new Mobile_Detect;
+    return $detect->isAndroidOS() || $detect->isiOS();
+}
