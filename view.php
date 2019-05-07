@@ -26,6 +26,7 @@
 
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/locallib.php');
+require_once(dirname(__FILE__) . '/Mobile_Detect.php');
 
 $id = required_param('id', PARAM_INT);
 $bn = optional_param('n', 0, PARAM_INT);
@@ -58,6 +59,7 @@ bigbluebuttonbn_view_bbbsession_set($context, $bbbsession);
 // Validates if the BigBlueButton server is working.
 $serverversion = bigbluebuttonbn_get_server_version();
 if (is_null($serverversion)) {
+
     if ($bbbsession['administrator']) {
         print_error('view_error_unable_join', 'bigbluebuttonbn',
             $CFG->wwwroot.'/admin/settings.php?section=modsettingbigbluebuttonbn');
@@ -185,6 +187,11 @@ function bigbluebuttonbn_view_bbbsession_set($context, &$bbbsession) {
     $bbbsession['originServerCommonName'] = '';
     $bbbsession['originTag'] = 'moodle-mod_bigbluebuttonbn ('.get_config('mod_bigbluebuttonbn', 'version').')';
     $bbbsession['bnserver'] = bigbluebuttonbn_is_bn_server();
+
+    // Mobile Detection
+    $bbbsession['detectmobile'] = $CFG->bigbluebuttonbn_detect_mobile;
+    $bbbsession['ismobilesession'] = bigbluebutton_is_device_for_mobile_client();
+
     // Setting for clienttype, assign flash if not enabled, or default if not editable.
     $bbbsession['clienttype'] = \mod_bigbluebuttonbn\locallib\config::get('clienttype_default');
     if (\mod_bigbluebuttonbn\locallib\config::get('clienttype_editable')) {
@@ -235,7 +242,7 @@ function bigbluebuttonbn_view_groups(&$bbbsession) {
     }
     // Separate or visible group mode.
     $groups = groups_get_activity_allowed_groups($bbbsession['cm']);
-    if (empty($groups)) {
+    if (empty($groups)) {        
         // No groups in this course.
         bigbluebuttonbn_view_message_box($bbbsession, get_string('view_groups_nogroups_warning', 'bigbluebuttonbn'), 'info', true);
         return;
@@ -248,7 +255,7 @@ function bigbluebuttonbn_view_groups(&$bbbsession) {
     // Assign group default values.
     $bbbsession['meetingid'] .= '['.$bbbsession['group'].']';
     $bbbsession['meetingname'] .= ' ('.$groupname.')';
-    if (count($groups) == 0) {
+    if (count($groups) == 0) {        
         // Only the All participants group exists.
         bigbluebuttonbn_view_message_box($bbbsession, get_string('view_groups_notenrolled_warning', 'bigbluebuttonbn'), 'info');
         return;
@@ -278,8 +285,11 @@ function bigbluebuttonbn_view_message_box(&$bbbsession, $message, $type = 'warni
     }
     echo $OUTPUT->box_start('generalbox boxaligncenter');
     echo '<br><div class="alert alert-' . $type . '">' . $message . '</div>';
-    echo $OUTPUT->box_end();
+    echo $OUTPUT->box_end();    
+
 }
+ 
+
 
 /**
  * Displays the general view.
@@ -298,7 +308,7 @@ function bigbluebuttonbn_view_render(&$bbbsession, $activity) {
     $enabledfeatures = bigbluebuttonbn_get_enabled_features($typeprofiles, $type);
     $pinginterval = (int)\mod_bigbluebuttonbn\locallib\config::get('waitformoderator_ping_interval') * 1000;
     // JavaScript for locales.
-    $PAGE->requires->strings_for_js(array_keys(bigbluebuttonbn_get_strings_for_js()), 'bigbluebuttonbn');
+    // $PAGE->requires->strings_for_js(array_keys(bigbluebuttonbn_get_strings_for_js()), 'bigbluebuttonbn');
     // JavaScript variables.
     $jsvars = array('activity' => $activity, 'ping_interval' => $pinginterval,
         'locale' => bigbluebuttonbn_get_localcode(), 'profile_features' => $typeprofiles[0]['features']);
@@ -330,6 +340,15 @@ function bigbluebuttonbn_view_render(&$bbbsession, $activity) {
         $output .= bigbluebuttonbn_render_warning($recordingsdisabled, 'danger');
     }
     echo $output.html_writer::empty_tag('br').html_writer::empty_tag('br').html_writer::empty_tag('br');
+    // Show mobile client options if mobile is detected
+    if ($bbbsession['ismobilesession'] && $bbbsession['detectmobile'] )        
+    {
+        echo $OUTPUT->box_start ('generalbox boxaligncenter', 'bigbluebuttonbn_view_action_button_box');
+        include 'mobile_apps.php';
+        echo $OUTPUT->box_end();
+
+    }
+
     $PAGE->requires->yui_module('moodle-mod_bigbluebuttonbn-broker', 'M.mod_bigbluebuttonbn.broker.init', array($jsvars));
 }
 
@@ -413,18 +432,20 @@ function bigbluebuttonbn_view_render_room(&$bbbsession, $activity, &$jsvars) {
         'opening' => $openingtime,
         'closing' => $closingtime,
     );
-    // Main box.
-    $output  = $OUTPUT->box_start('generalbox boxaligncenter', 'bigbluebuttonbn_view_message_box');
+    // Main box.    
+    $output  = $OUTPUT->box_start('generalbox boxaligncenter', 'bigbluebuttonbn_view_message_box');    
     $output .= '<br><span id="status_bar"></span>';
     $output .= '<br><span id="control_panel"></span>';
     $output .= $OUTPUT->box_end();
     // Action button box.
-    $output .= $OUTPUT->box_start('generalbox boxaligncenter', 'bigbluebuttonbn_view_action_button_box');
+    $output .= $OUTPUT->box_start ('generalbox boxaligncenter', 'bigbluebuttonbn_view_action_button_box');
     $output .= '<br><br><span id="join_button"></span>&nbsp;<span id="end_button"></span>'."\n";
     $output .= $OUTPUT->box_end();
     if ($activity == 'ended') {
         $output .= bigbluebuttonbn_view_ended($bbbsession);
     }
+
+    //echo $OUTPUT->box_start('generalbox boxaligncenter', 'bigbluebuttonbn_view_message_box');    
     return $output;
 }
 
@@ -583,3 +604,8 @@ function bigbluebuttonbn_view_warning_general(&$bbbsession) {
         (string)\mod_bigbluebuttonbn\locallib\config::get('general_warning_button_class')
       );
 }
+
+function bigbluebutton_is_device_for_mobile_client(){
+   $detect = new Mobile_Detect;
+       return $detect->isAndroidOS() || $detect->isiOS();
+    }
