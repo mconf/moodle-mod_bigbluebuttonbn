@@ -188,7 +188,7 @@ function bigbluebuttonbn_view_bbbsession_set($context, &$bbbsession) {
     $bbbsession['originTag'] = 'moodle-mod_bigbluebuttonbn ('.get_config('mod_bigbluebuttonbn', 'version').')';
     $bbbsession['bnserver'] = bigbluebuttonbn_is_bn_server();
 
-    // Mobile Detection
+    // Mobile Detection.
     $bbbsession['detectmobile'] = $CFG->bigbluebuttonbn_detect_mobile;
     $bbbsession['ismobilesession'] = bigbluebutton_is_device_for_mobile_client();
 
@@ -242,7 +242,7 @@ function bigbluebuttonbn_view_groups(&$bbbsession) {
     }
     // Separate or visible group mode.
     $groups = groups_get_activity_allowed_groups($bbbsession['cm']);
-    if (empty($groups)) {        
+    if (empty($groups)) {
         // No groups in this course.
         bigbluebuttonbn_view_message_box($bbbsession, get_string('view_groups_nogroups_warning', 'bigbluebuttonbn'), 'info', true);
         return;
@@ -255,7 +255,7 @@ function bigbluebuttonbn_view_groups(&$bbbsession) {
     // Assign group default values.
     $bbbsession['meetingid'] .= '['.$bbbsession['group'].']';
     $bbbsession['meetingname'] .= ' ('.$groupname.')';
-    if (count($groups) == 0) {        
+    if (count($groups) == 0) {
         // Only the All participants group exists.
         bigbluebuttonbn_view_message_box($bbbsession, get_string('view_groups_notenrolled_warning', 'bigbluebuttonbn'), 'info');
         return;
@@ -285,11 +285,9 @@ function bigbluebuttonbn_view_message_box(&$bbbsession, $message, $type = 'warni
     }
     echo $OUTPUT->box_start('generalbox boxaligncenter');
     echo '<br><div class="alert alert-' . $type . '">' . $message . '</div>';
-    echo $OUTPUT->box_end();    
+    echo $OUTPUT->box_end();
 
 }
- 
-
 
 /**
  * Displays the general view.
@@ -340,13 +338,12 @@ function bigbluebuttonbn_view_render(&$bbbsession, $activity) {
         $output .= bigbluebuttonbn_render_warning($recordingsdisabled, 'danger');
     }
     echo $output.html_writer::empty_tag('br').html_writer::empty_tag('br').html_writer::empty_tag('br');
-    // Show mobile client options if mobile is detected
-    if ($bbbsession['ismobilesession'] && $bbbsession['detectmobile'] )        
-    {
+
+    // Show mobile client options if mobile is detected.
+    if ($bbbsession['ismobilesession'] && $bbbsession['detectmobile'] ) {
         echo $OUTPUT->box_start ('generalbox boxaligncenter', 'bigbluebuttonbn_view_action_button_box');
         include 'mobile_apps.php';
         echo $OUTPUT->box_end();
-
     }
 
     $PAGE->requires->yui_module('moodle-mod_bigbluebuttonbn-broker', 'M.mod_bigbluebuttonbn.broker.init', array($jsvars));
@@ -432,7 +429,7 @@ function bigbluebuttonbn_view_render_room(&$bbbsession, $activity, &$jsvars) {
         'opening' => $openingtime,
         'closing' => $closingtime,
     );
-    // Main box.    
+    // Main box.
     $output  = $OUTPUT->box_start('generalbox boxaligncenter', 'bigbluebuttonbn_view_message_box');    
     $output .= '<br><span id="status_bar"></span>';
     $output .= '<br><span id="control_panel"></span>';
@@ -605,7 +602,7 @@ function bigbluebuttonbn_view_warning_general(&$bbbsession) {
       );
 }
 
-function bigbluebutton_is_device_for_mobile_client(){
-   $detect = new Mobile_Detect;
-       return $detect->isAndroidOS() || $detect->isiOS();
-    }
+function bigbluebutton_is_device_for_mobile_client() {
+    $detect = new Mobile_Detect;
+    return $detect->isAndroidOS() || $detect->isiOS();
+}

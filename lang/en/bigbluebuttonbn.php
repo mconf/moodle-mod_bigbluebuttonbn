@@ -57,7 +57,6 @@ $string['config_shared_secret'] = 'Elos Shared Secret';
 $string['config_shared_secret_description'] = 'The security salt of your Elos server.  (This default salt is for a BigBlueButton server provided by Blindside Networks that you can use for testing.)';
 $string['config_detect_mobile'] = 'Detect Mobile Clients';
 $string['config_detect_mobile_description'] = 'Try to detect if the conference is being accessed from a mobile device and redirect to mobile client';
- 
 $string['config_feature_recording'] = 'Configuration for "Recording" feature';
 
 $string['config_formats'] = 'Configuration for "Format" options';
