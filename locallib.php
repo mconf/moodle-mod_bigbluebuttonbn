@@ -1594,6 +1594,9 @@ function bigbluebuttonbn_get_recording_data_row_type($recording, $bbbsession, $p
     if (!bigbluebuttonbn_include_recording_data_row_type($recording, $bbbsession, $playback)) {
         return '';
     }
+    echo "<br><br>";
+    print_r($playback);
+    echo "<br><br>";
     $CFG->bigbluebuttonbn['token_auth'] = true;
     $CFG->bigbluebuttonbn['formats_allowed'] = 'presentation';
     $text = get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn');
@@ -1614,7 +1617,9 @@ function bigbluebuttonbn_get_recording_data_row_type($recording, $bbbsession, $p
         'data-action' => 'play',
         'data-target' => $playback['type'],
         'data-href' => $href,
-    );    
+    );
+    echo "bn server: ".bigbluebuttonbn_is_bn_server();
+    echo "<br>valid resource: ".bigbluebuttonbn_is_valid_resource(trim($playback['url']));
     if (!bigbluebuttonbn_is_bn_server() && !bigbluebuttonbn_is_valid_resource(trim($playback['url']))) {
         $linkattributes['class'] = 'btn btn-sm btn-warning';
         $linkattributes['title'] = get_string('view_recording_format_errror_unreachable', 'bigbluebuttonbn');
@@ -1645,7 +1650,7 @@ function bigbluebuttonbn_is_valid_resource($url) {
     // Validate the recording URL.
     $validatedurls[$urlhost] = true;
     $curlinfo = bigbluebuttonbn_wrap_xml_load_file_curl_request($url, 'HEAD');
-    if (!isset($curlinfo['http_code']) || $curlinfo['http_code'] != 200) {
+    if (!isset($curlinfo['http_code']) || ($curlinfo['http_code'] != 200 && $curlinfo['http_code'] != 301)) {
         $error = "Resources hosted by " . $urlhost . " are unreachable. Server responded with code " . $curlinfo['http_code'];
         debugging($error, DEBUG_DEVELOPER);
         $validatedurls[$urlhost] = false;
@@ -2756,7 +2761,7 @@ function bigbluebuttonbn_include_recording_data_row_type($recording, $bbbsession
         $formatsallowed = explode(',', \mod_bigbluebuttonbn\locallib\config::get('formats_allowed'));
         // Explode returns an array with the position [0] with a null object if the result is empty.
         if ($formatsallowed[0]!=null) {
-        
+
             $allformats = explode(',', \mod_bigbluebuttonbn\locallib\config::get('formats_allowed_default'));
             $playbackkey = array_search($playback['type'], $allformats);
             $formatkey = array_search($playbackkey, $formatsallowed);
