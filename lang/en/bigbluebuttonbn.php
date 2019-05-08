@@ -95,7 +95,8 @@ $string['config_recordings_preview_default'] = 'Preview is enabled by default';
 $string['config_recordings_preview_default_description'] = 'If enabled the table includes a preview of the presentation.';
 $string['config_recordings_preview_editable'] = 'Preview feature can be edited';
 $string['config_recordings_preview_editable_description'] = 'Preview feature can be edited when the instance is added or updated.';
-
+$string['config_recordings_get_token'] = 'Enable the authentication mechanism of recordings using';
+$string['config_recordings_get_token_description'] = 'When this feature is enabled, it is possible to enable the record authentication mechanism';
 
 $string['config_importrecordings'] = 'Configuration for "Import recordings" feature';
 $string['config_importrecordings_description'] = 'These settings are feature specific';

@@ -430,6 +430,9 @@ function bigbluebuttonbn_process_pre_save_checkboxes(&$bigbluebuttonbn) {
     if (!isset($bigbluebuttonbn->recordings_html)) {
         $bigbluebuttonbn->recordings_html = 0;
     }
+    if (!isset($bigbluebuttonbn->recordings_get)) {
+        $bigbluebuttonbn->recordings_get = 0;
+    }
     if (!isset($bigbluebuttonbn->recordings_deleted)) {
         $bigbluebuttonbn->recordings_deleted = 0;
     }

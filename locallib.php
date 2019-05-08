@@ -1593,7 +1593,7 @@ function bigbluebuttonbn_get_recording_data_row_type($recording, $bbbsession, $p
     global $CFG, $OUTPUT;
     if (!bigbluebuttonbn_include_recording_data_row_type($recording, $bbbsession, $playback)) {
         return '';
-    }    
+    }
     $CFG->bigbluebuttonbn['token_auth'] = true;
     $CFG->bigbluebuttonbn['formats_allowed'] = 'presentation';
     $text = get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn');
@@ -2510,6 +2510,8 @@ function bigbluebuttonbn_settings_showrecordings(&$renderer) {
             $renderer->render_group_element_checkbox('recordings_preview_default', 1));
         $renderer->render_group_element('recordings_preview_editable',
             $renderer->render_group_element_checkbox('recordings_preview_editable', 0));
+        $renderer->render_group_element('recordings_get_token',
+            $renderer->render_group_element_checkbox('recordings_get_token', 0));
     }
 }
 
