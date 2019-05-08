@@ -288,11 +288,6 @@ function bigbluebuttonbn_view_message_box(&$bbbsession, $message, $type = 'warni
     echo $OUTPUT->box_end();
 
 }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> b3cd8bc38a85227731055b476407ff5310cb59de
 
 /**
  * Displays the general view.
@@ -343,15 +338,9 @@ function bigbluebuttonbn_view_render(&$bbbsession, $activity) {
         $output .= bigbluebuttonbn_render_warning($recordingsdisabled, 'danger');
     }
     echo $output.html_writer::empty_tag('br').html_writer::empty_tag('br').html_writer::empty_tag('br');
-<<<<<<< HEAD
     // Show mobile client options if mobile is detected
     if ($bbbsession['ismobilesession'] && $bbbsession['detectmobile'] )
     {
-=======
-
-    // Show mobile client options if mobile is detected.
-    if ($bbbsession['ismobilesession'] && $bbbsession['detectmobile'] ) {
->>>>>>> b3cd8bc38a85227731055b476407ff5310cb59de
         echo $OUTPUT->box_start ('generalbox boxaligncenter', 'bigbluebuttonbn_view_action_button_box');
         include 'mobile_apps.php';
         echo $OUTPUT->box_end();
@@ -441,6 +430,7 @@ function bigbluebuttonbn_view_render_room(&$bbbsession, $activity, &$jsvars) {
         'closing' => $closingtime,
     );
     // Main box.
+
     $output  = $OUTPUT->box_start('generalbox boxaligncenter', 'bigbluebuttonbn_view_message_box');
     $output .= '<br><span id="status_bar"></span>';
     $output .= '<br><span id="control_panel"></span>';
