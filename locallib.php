@@ -1594,12 +1594,14 @@ function bigbluebuttonbn_get_recording_data_row_type($recording, $bbbsession, $p
     if (!bigbluebuttonbn_include_recording_data_row_type($recording, $bbbsession, $playback)) {
         return '';
     }
-    $CFG->bigbluebuttonbn['token_auth'] = true;
-    $CFG->bigbluebuttonbn['formats_allowed'] = 'presentation';
+    // Pega a variavel que define se é para usar autenticação de token ou não.
+    $token_auth = intval((int)\mod_bigbluebuttonbn\locallib\config::get('recordings_get_token'));
+    
+
     $text = get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn');
-    if ($CFG->bigbluebuttonbn['token_auth']) {
+    if ($token_auth) {
         $href = $CFG->wwwroot . '/mod/bigbluebuttonbn/playback.php?id=' . $bbbsession['bigbluebuttonbn']->id .
-        '&recordID=' . $recording['recordID'] . '&format=' . $CFG->bigbluebuttonbn['formats_allowed'];
+        '&recordID=' . $recording['recordID'] . '&format=' . $playback['type'];
     } else {
         $href = $CFG->wwwroot . '/mod/bigbluebuttonbn/bbb_view.php?action=play&bn=' . $bbbsession['bigbluebuttonbn']->id .
         '&mid='.$recording['meetingID'] . '&rid=' . $recording['recordID'] . '&rtype=' . $playback['type'];
