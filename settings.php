@@ -41,7 +41,7 @@ if ($ADMIN->fulltree) {
     // Renders general settings.
     bigbluebuttonbn_settings_general($renderer);
 
-    if( !isset($CFG->bigbluebuttonbn['bigbluebuttonbn_detect_mobile']) ) {
+    if ( !isset($CFG->bigbluebuttonbn['bigbluebuttonbn_detect_mobile']) ) {
         $settings->add( new admin_setting_configcheckbox( 'bigbluebuttonbn_detect_mobile',
             get_string( 'config_detect_mobile', 'bigbluebuttonbn' ),
             get_string( 'config_detect_mobile_description', 'bigbluebuttonbn' ), BIGBLUEBUTTONBN_MOBILE_DETECT));

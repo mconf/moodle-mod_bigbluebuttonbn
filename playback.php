@@ -182,4 +182,5 @@ foreach ($record['playbacks'] as $playback) {
 $token = bigbluebuttonbn_getrecordingtoken($bbbsession['endpoint'], $bbbsession['shared_secret'], $_GET['recordID'], $USER->username, $USER->lastip);
 
 // Output starts here.
-echo "<iframe src='".$url."&token=".$token."' frameborder='0' style='position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;' height='100%' width='100%'></iframe>";
+echo "<iframe src='".$url."&token=".$token."' frameborder='0' style='position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%;
+border:none; margin:0; padding:0; overflow:hidden; z-index:999999;' height='100%' width='100%'></iframe>";

@@ -339,10 +339,9 @@ function bigbluebuttonbn_view_render(&$bbbsession, $activity) {
     }
     echo $output.html_writer::empty_tag('br').html_writer::empty_tag('br').html_writer::empty_tag('br');
     // Show mobile client options if mobile is detected
-    if ($bbbsession['ismobilesession'] && $bbbsession['detectmobile'] )
-    {
+    if ($bbbsession['ismobilesession'] && $bbbsession['detectmobile'] ) {
         echo $OUTPUT->box_start ('generalbox boxaligncenter', 'bigbluebuttonbn_view_action_button_box');
-        include 'mobile_apps.php';
+        include('mobile_apps.php');
         echo $OUTPUT->box_end();
     }
 
@@ -442,8 +441,7 @@ function bigbluebuttonbn_view_render_room(&$bbbsession, $activity, &$jsvars) {
     if ($activity == 'ended') {
         $output .= bigbluebuttonbn_view_ended($bbbsession);
     }
-
-    //echo $OUTPUT->box_start('generalbox boxaligncenter', 'bigbluebuttonbn_view_message_box');
+    
     return $output;
 }
 

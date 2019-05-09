@@ -100,20 +100,21 @@ function bigbluebuttonbn_get_join_url($meetingid, $username, $pw, $logouturl, $c
     'fullName' => $username,
     'password' => $pw,
     'logoutURL' => $logouturl,
-];
-    // Choose between Adobe Flash or HTML5 Client.
-if ( $clienttype == BIGBLUEBUTTON_CLIENTTYPE_HTML5 ) {
-    $data['joinViaHtml5'] = 'true';
-}
+    ];
 
-if (!is_null($configtoken)) {
-    $data['configToken'] = $configtoken;
-}
-if (!is_null($userid)) {
-    $data['userID'] = $userid;
-}
-return \mod_bigbluebuttonbn\locallib\bigbluebutton::action_url('join', $data);
-}
+    // Choose between Adobe Flash or HTML5 Client.
+    if ( $clienttype == BIGBLUEBUTTON_CLIENTTYPE_HTML5 ) {
+        $data['joinViaHtml5'] = 'true';
+    }
+
+    if (!is_null($configtoken)) {
+        $data['configToken'] = $configtoken;
+    }
+    if (!is_null($userid)) {
+        $data['userID'] = $userid;
+    }
+    return \mod_bigbluebuttonbn\locallib\bigbluebutton::action_url('join', $data);
+  }
 
 /**
  * Creates a bigbluebutton meeting and returns the response in an array.
@@ -580,7 +581,7 @@ function bigbluebuttonbn_wrap_xml_load_file_curl_request($url, $method = 'GET', 
          'Content-Type: '.$contenttype,
          'Content-Length: '.strlen($data),
          'Content-Language: en-US',
-     );
+        );
 
         return $c->post($url, $data, $options);
     }
@@ -1595,11 +1596,10 @@ function bigbluebuttonbn_get_recording_data_row_type($recording, $bbbsession, $p
         return '';
     }
     // Pega a variavel que define se é para usar autenticação de token ou não.
-    $token_auth = intval((int)\mod_bigbluebuttonbn\locallib\config::get('recordings_get_token'));
-    
+    $tokenauth = intval((int)\mod_bigbluebuttonbn\locallib\config::get('recordings_get_token'));
 
     $text = get_string('view_recording_format_'.$playback['type'], 'bigbluebuttonbn');
-    if ($token_auth) {
+    if ($tokenauth) {
         $href = $CFG->wwwroot . '/mod/bigbluebuttonbn/playback.php?id=' . $bbbsession['bigbluebuttonbn']->id .
         '&recordID=' . $recording['recordID'] . '&format=' . $playback['type'];
     } else {
@@ -2759,13 +2759,13 @@ function bigbluebuttonbn_include_recording_data_row_type($recording, $bbbsession
         // Check if the playback types are formats allowed in BBB config.
         $formatsallowed = explode(',', \mod_bigbluebuttonbn\locallib\config::get('formats_allowed'));
         // Explode returns an array with the position [0] with a null object if the result is empty.
-        if ($formatsallowed[0]!=null) {
+        if ($formatsallowed[0] != null) {
 
             $allformats = explode(',', \mod_bigbluebuttonbn\locallib\config::get('formats_allowed_default'));
             $playbackkey = array_search($playback['type'], $allformats);
             $formatkey = array_search($playbackkey, $formatsallowed);
 
-        // Needed to check if false because index 0 is evuated as false.
+            // Needed to check if false because index 0 is evuated as false.
             if ($formatkey === false) {
                 return false;
             } else {
