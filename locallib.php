@@ -114,7 +114,7 @@ function bigbluebuttonbn_get_join_url($meetingid, $username, $pw, $logouturl, $c
         $data['userID'] = $userid;
     }
     return \mod_bigbluebuttonbn\locallib\bigbluebutton::action_url('join', $data);
-  }
+}
 
 /**
  * Creates a bigbluebutton meeting and returns the response in an array.
@@ -173,7 +173,7 @@ function bigbluebuttonbn_get_meeting_info_array($meetingid) {
          'moderatorCount' => $xml->moderatorCount,
          'attendees' => $xml->attendees,
          'metadata' => $xml->metadata,
-     );
+        );
     }
     if ($xml) {
         // Either failure or success without meeting info.

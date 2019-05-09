@@ -441,7 +441,7 @@ function bigbluebuttonbn_view_render_room(&$bbbsession, $activity, &$jsvars) {
     if ($activity == 'ended') {
         $output .= bigbluebuttonbn_view_ended($bbbsession);
     }
-    
+
     return $output;
 }
 
