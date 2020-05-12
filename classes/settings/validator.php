@@ -91,7 +91,8 @@ class validator {
                 !isset($CFG->bigbluebuttonbn['recordings_imported_editable']) ||
                 !isset($CFG->bigbluebuttonbn['recordings_preview_default']) ||
                 !isset($CFG->bigbluebuttonbn['recordings_preview_editable']) ||
-                !isset($CFG->bigbluebuttonbn['recordings_validate_url'])
+                !isset($CFG->bigbluebuttonbn['recordings_validate_url']) ||
+                !isset($CFG->bigbluebuttonbn['recordings_authenticated'])
               );
     }
 

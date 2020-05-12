@@ -237,8 +237,18 @@ switch (strtolower($action)) {
         // Internal logger: Instert a record with the playback played.
         $overrides = array('meetingid' => $bbbsession['meetingid']);
         bigbluebuttonbn_log($bbbsession['bigbluebuttonbn'], BIGBLUEBUTTONBN_LOG_EVENT_PLAYED, $overrides);
+
+        $redirect_url = urldecode($href);
+        if ($CFG->bigbluebuttonbn_recordings_authenticated) {
+            $response = bigbluebuttonbn_get_recording_token_array($rid, $bbbsession['username'], $bbbsession['userIP']);
+            if (isset(parse_url($redirect_url)['query'])){
+                $redirect_url .= "&token=" . $response['token'];
+            } else {
+                $redirect_url .= "?token=" . $response['token'];
+            }
+        }
         // Execute the redirect.
-        header('Location: '.urldecode($href));
+        header('Location: ' . $redirect_url);
         break;
     default:
         bigbluebutton_bbb_view_close_window();

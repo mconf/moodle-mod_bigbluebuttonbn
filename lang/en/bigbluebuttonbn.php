@@ -124,6 +124,8 @@ $string['config_recordings_sortorder'] = 'Order the recordings in ascending orde
 $string['config_recordings_sortorder_description'] = 'By default recordings are displayed in descending order. When checked they will be sorted in ascending order.';
 $string['config_recordings_validate_url'] = 'Validate URL';
 $string['config_recordings_validate_url_description'] = 'If checked the playback URL will be validated before the user access it.';
+$string['config_recordings_authenticated'] = 'Authenticate recordings';
+$string['config_recordings_authenticated_description'] = 'If checked the authorization token will be retrieved from the recording server.';
 
 $string['config_importrecordings'] = 'Configuration for "Import recordings" feature';
 $string['config_importrecordings_description'] = 'These settings are feature specific';
@@ -334,6 +336,7 @@ $string['view_recording_format_presentation'] = 'Presentation';
 $string['view_recording_format_screenshare'] = 'Screenshare';
 $string['view_recording_format_statistics'] = 'Statistics';
 $string['view_recording_format_video'] = 'Video';
+$string['view_recording_format_presentation_video'] = 'Video';
 $string['view_recording_format_errror_unreachable'] = 'The URL for this recording format is unreachable.';
 $string['view_section_title_presentation'] = 'Presentation file';
 $string['view_section_title_recordings'] = 'Recordings';

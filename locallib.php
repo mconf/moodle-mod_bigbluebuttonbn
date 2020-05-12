@@ -219,6 +219,18 @@ function bigbluebuttonbn_get_recordings_array($meetingids, $recordingids = []) {
     return bigbluebuttonbn_get_recordings_array_filter($recordingidsarray, $recordings);
 }
 
+function bigbluebuttonbn_get_recording_token_array($meetingid, $username, $userip) {
+    $gettokenurl = \mod_bigbluebuttonbn\locallib\bigbluebutton::action_url('getRecordingToken', ['meetingID' => $meetingid, 'authUser' => $username, 'authAddr' => $userip]);
+    $method = 'GET';
+    $data = null;
+    $xml = bigbluebuttonbn_wrap_xml_load_file($gettokenurl, $method, $data);
+    if ($xml) {
+        $response = array('returncode' => $xml->returncode, 'token' => $xml->token);
+        return $response;
+    }
+    return array('returncode' => 'FAILED', 'message' => 'unreachable');
+}
+
 /**
  * Helper function to fetch recordings from a BigBlueButton server.
  *
@@ -1383,7 +1395,8 @@ function bigbluebuttonbn_get_recording_data_row_editable($bbbsession) {
  * @return boolean
  */
 function bigbluebuttonbn_get_recording_data_preview_enabled($bbbsession) {
-    return ((double)$bbbsession['serverversion'] >= 1.0 && $bbbsession['bigbluebuttonbn']->recordings_preview == '1');
+    global $CFG;
+    return ((double)$bbbsession['serverversion'] >= 1.0 && $bbbsession['bigbluebuttonbn']->recordings_preview == '1' && !$CFG->bigbluebuttonbn_recordings_authenticated);
 }
 
 /**
@@ -2618,6 +2631,8 @@ function bigbluebuttonbn_settings_showrecordings(&$renderer) {
             $renderer->render_group_element_checkbox('recordings_sortorder', 0));
         $renderer->render_group_element('recordings_validate_url',
             $renderer->render_group_element_checkbox('recordings_validate_url', 1));
+        $renderer->render_group_element('recordings_authenticated',
+            $renderer->render_group_element_checkbox('recordings_authenticated', 0));
     }
 }
 
@@ -2871,7 +2886,7 @@ function bigbluebuttonbn_include_recording_data_row_type($recording, $bbbsession
         return true;
     }
     // All types that are not statistics are included.
-    if ($playback['type'] != 'statistics') {
+    if ($playback['type'] != 'statistics' && $playback['type'] != 'mconf_encrypted') {
         return true;
     }
     // Exclude imported recordings.
@@ -3093,6 +3108,7 @@ function bigbluebuttonbn_view_bbbsession_set($context, &$bbbsession) {
     // User data.
     $bbbsession['username'] = fullname($USER);
     $bbbsession['userID'] = $USER->id;
+    $bbbsession['userIP'] = $USER->lastip;
     // User roles.
     $bbbsession['administrator'] = is_siteadmin($bbbsession['userID']);
     $participantlist = bigbluebuttonbn_get_participant_list($bbbsession['bigbluebuttonbn'], $context);
