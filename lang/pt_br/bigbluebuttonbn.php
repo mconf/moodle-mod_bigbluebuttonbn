@@ -44,7 +44,7 @@ $string['modulename'] = 'Elos';
 $string['modulenameplural'] = 'Elos';
 $string['modulename_help'] = 'O módulo Elos para Moodle permite que você crie a partir do Moodle salas de webconferência para aulas online e em tempo real usando o Elos.
 
-Usando o módulo Elos para Moodle você pode especificar título, descrição, período de utilização, grupos e detalhes sobre a gravação da sessão.
+Usando o módulo Elos para Moodle você pode especificar título, descrição, período de utilização, grupos e detalhes sobre a gravação da sessão.';
 $string['modulename_link'] = 'BigBlueButtonBN/view';
 $string['pluginadministration'] = 'Administração do Elos';
 $string['pluginname'] = 'Webconferência Elos';
